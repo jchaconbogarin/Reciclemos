@@ -20,18 +20,6 @@
     <include layout="@layout/content_main" />
 
     <ImageButton
-        android:layout_width="@dimen/main_house_btn_width"
-        android:layout_height="@dimen/main_house_btn_height"
-        android:id="@+id/house_btn"
-        android:onClick="showHouse"
-        android:contentDescription="@string/main_house_contentDescription"
-        android:background="@drawable/btn_main_house"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/recycle_btn"
-        android:layout_marginLeft="@dimen/main_house_btn_margin_left"
-        android:layout_marginBottom="@dimen/main_house_btn_margin_bottom" />
-
-    <ImageButton
         android:layout_width="@dimen/main_recycle_btn_width"
         android:layout_height="@dimen/main_recycle_btn_height"
         android:id="@+id/recycle_btn"
@@ -39,10 +27,15 @@
         android:contentDescription="@string/main_recycle_contentDescription"
         android:background="@drawable/btn_main_trash"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/main_recycle_btn_margin_left"
-        android:layout_marginBottom="@dimen/main_recycle_btn_margin_bottom" />
-
+        android:layout_alignParentBottom="true" />
+    <ImageButton
+        android:layout_width="@dimen/main_house_btn_width"
+        android:layout_height="@dimen/main_house_btn_height"
+        android:id="@+id/house_btn"
+        android:onClick="showHouse"
+        android:contentDescription="@string/main_house_contentDescription"
+        android:background="@drawable/btn_main_house"
+        android:layout_alignParentBottom="true" />
     <ImageButton
         android:layout_width="@dimen/main_lake_btn_width"
         android:layout_height="@dimen/main_lake_btn_height"
@@ -55,7 +48,6 @@
         android:layout_toStartOf="@+id/forest_btn"
         android:layout_marginRight="@dimen/main_lake_btn_margin_right"
         android:layout_marginBottom="@dimen/main_lake_btn_margin_bottom" />
-
     <ImageButton
         android:layout_width="@dimen/main_forest_btn_width"
         android:layout_height="@dimen/main_forest_btn_height"
@@ -67,7 +59,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/main_forest_btn_margin_right"
         android:layout_marginBottom="@dimen/main_forest_btn_margin_bottom" />
-
     <ImageButton
         android:layout_width="@dimen/main_about_btn_width"
         android:layout_height="@dimen/main_about_btn_height"

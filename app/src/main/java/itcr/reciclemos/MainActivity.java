@@ -1,27 +1,34 @@
 package itcr.reciclemos;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     //-- GUI Elements ---------------------
-    private ImageButton forestBtn;
+    private ImageButton recycleBtn;
     private ImageButton houseBtn;
     private ImageButton lakeBtn;
+    private ImageButton forestBtn;
     private ImageButton aboutBtn;
-    private ImageButton recycleBtn;
-    //-------------------------------------
+
+    Utilities toolBox = new Utilities();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +38,71 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //-- Link the GUI Elements ------------
-        forestBtn = (ImageButton) findViewById(R.id.forest_btn);
+        recycleBtn = (ImageButton) findViewById(R.id.recycle_btn);
         houseBtn = (ImageButton) findViewById(R.id.house_btn);
         lakeBtn = (ImageButton) findViewById(R.id.lake_btn);
+        forestBtn = (ImageButton) findViewById(R.id.forest_btn);
         aboutBtn = (ImageButton) findViewById(R.id.about_btn);
-        recycleBtn = (ImageButton) findViewById(R.id.recycle_btn);
-        //-------------------------------------
+
+        //-- Set the Aspect Ratio -------------
+        Display currentDisplay = getWindowManager().getDefaultDisplay();
+        Point currentScreenSize = new Point();
+        currentDisplay.getSize(currentScreenSize);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        //-- Set location and size for recycleBtn
+        Point adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_RECYCLE, currentScreenSize);
+        Point adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_RECYCLE.x + toolBox.POINT_D_MAIN_RECYCLE.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_RECYCLE.y + toolBox.POINT_D_MAIN_RECYCLE.y));
+        Point adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_RECYCLE, currentScreenSize);
+        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT, currentScreenSize);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
+        recycleBtn.setLayoutParams(params);
+
+        //-- Set location and size for houseBtn
+        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_HOUSE, currentScreenSize);
+        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_HOUSE.x + toolBox.POINT_D_MAIN_HOUSE.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_HOUSE.y + toolBox.POINT_D_MAIN_HOUSE.y));
+        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_HOUSE, currentScreenSize);
+        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT, currentScreenSize);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
+        houseBtn.setLayoutParams(params);
+
+        //-- Set location and size for lakeBtn
+        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_LAKE, currentScreenSize);
+        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_LAKE.x + toolBox.POINT_D_MAIN_LAKE.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_LAKE.y + toolBox.POINT_D_MAIN_LAKE.y));
+        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_LAKE, currentScreenSize);
+        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT, currentScreenSize);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
+        lakeBtn.setLayoutParams(params);
+
+        //-- Set location and size for forestBtn
+        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_FOREST, currentScreenSize);
+        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_FOREST.x + toolBox.POINT_D_MAIN_FOREST.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_FOREST.y + toolBox.POINT_D_MAIN_FOREST.y));
+        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_FOREST, currentScreenSize);
+        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT, currentScreenSize);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
+        forestBtn.setLayoutParams(params);
+
+        //-- Set location and size for aboutBtn
+        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_ABOUT, currentScreenSize);
+        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_ABOUT.x + toolBox.POINT_D_MAIN_ABOUT.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_ABOUT.y + toolBox.POINT_D_MAIN_ABOUT.y));
+        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_ABOUT, currentScreenSize);
+        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT, currentScreenSize);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
+        aboutBtn.setLayoutParams(params);
     }
 
     @Override

@@ -52,9 +52,9 @@ public class RecycleActivity extends AppCompatActivity {
         "Vidrio_5"
     };
     Integer[] yellowImageId = {
-        R.drawable.trash_blue_1,
-        R.drawable.trash_blue_2,
-        R.drawable.trash_blue_1,
+        R.drawable.trash_yellow_1,
+        R.drawable.trash_yellow_2,
+        R.drawable.trash_yellow_3,
         R.drawable.trash_blue_2,
         R.drawable.trash_blue_1
     };

@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="main_house_btn_width">134dp</dimen>
+    <dimen name="main_house_btn_height">98dp</dimen>
+    <dimen name="main_house_btn_margin_left">16dp</dimen>
+    <dimen name="main_house_btn_margin_bottom">36dp</dimen>
+    <dimen name="main_recycle_btn_width">56dp</dimen>
+    <dimen name="main_recycle_btn_height">37dp</dimen>
+    <dimen name="main_recycle_btn_margin_left">24dp</dimen>
+    <dimen name="main_recycle_btn_margin_bottom">16dp</dimen>
+    <dimen name="main_lake_btn_width">126dp</dimen>
+    <dimen name="main_lake_btn_height">23dp</dimen>
+    <dimen name="main_lake_btn_margin_right">36dp</dimen>
+    <dimen name="main_lake_btn_margin_bottom">32dp</dimen>
+    <dimen name="main_forest_btn_width">105dp</dimen>
+    <dimen name="main_forest_btn_height">98dp</dimen>
+    <dimen name="main_forest_btn_margin_right">16dp</dimen>
+    <dimen name="main_forest_btn_margin_bottom">32dp</dimen>
+    <dimen name="main_about_btn_width">68dp</dimen>
+    <dimen name="main_about_btn_height">35dp</dimen>
+    <dimen name="main_about_btn_margin_right">96dp</dimen>
+    <dimen name="main_about_btn_margin_top">32dp</dimen>
+</resources>

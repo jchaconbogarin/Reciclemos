@@ -28,44 +28,33 @@ public class HouseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//Hide Title
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Set Full Screen
+        setContentView(R.layout.activity_house);
 
-        ImageView imgView1 = new ImageView(this);
-        imgView1.setImageResource(R.drawable.trash_green_8);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        imgView1.setLayoutParams(params);
+        ImageView iv = new ImageView(this);
 
+        iv.setImageResource(R.drawable.trash_gray_2);
         relativeLayout = (RelativeLayout) findViewById(R.id.house_layout);
-        relativeLayout.addView(imgView1);
-
-        /*LayoutParams layoutParamsBG = new LayoutParams();
-
-        relativeLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.bg_house));
-
-        setContentView(relativeLayout);
 
         //-- Set the Aspect Ratio -------------
         Display currentDisplay = getWindowManager().getDefaultDisplay();
         Point currentScreenSize = new Point();
         currentDisplay.getSize(currentScreenSize);
 
-        ImageView imgView1 = new ImageView(this);
-        ImageView imgView2 = new ImageView(this);
 
-        imgView1.setImageResource(R.drawable.trash_gray_4);
-        imgView2.setImageResource(R.drawable.trash_blue_3);
-
-        LayoutParams layoutParams_1 = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        //Point adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_D_ALL_THRASH, currentScreenSize);
-        //Point adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (234 + toolBox.POINT_D_ALL_THRASH.x), toolBox.POINT_BACKGROUND.y - (267 + toolBox.POINT_D_ALL_THRASH.y));
-        //Point adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_ALL_THRASH, currentScreenSize);
-        layoutParams_1.setMargins(200, 200, 260, 260);
-        layoutParams_1.width = 60;
-        layoutParams_1.height = 60;
-        imgView1.setLayoutParams(layoutParams_1);*/
-
-        relativeLayout.addView(imgView1);
+        Point adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_RECYCLE, currentScreenSize);
+        Point adjustedSizeRT = new Point(
+                toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_RECYCLE.x + toolBox.POINT_D_MAIN_RECYCLE.x),
+                toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_RECYCLE.y + toolBox.POINT_D_MAIN_RECYCLE.y));
+        Point adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_RECYCLE, currentScreenSize);
+        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT, currentScreenSize);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
 
 
+        iv.setLayoutParams(params);
+        relativeLayout.addView(iv);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

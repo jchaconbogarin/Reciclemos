@@ -22,6 +22,8 @@
     <string name="redDesc_text">Los.</string>
     <string name="purpleTitle_text">Residuos Eléctricos y Electrónicos</string>
     <string name="purpleDesc_text">Los.</string>
+    <string name="blackTitle_text">Residuos Generales</string>
+    <string name="blackDesc_text">Los.</string>
 
     <string name="main_house_contentDescription">Casa</string>
     <string name="main_recycle_contentDescription">Guía de reciclaje</string>

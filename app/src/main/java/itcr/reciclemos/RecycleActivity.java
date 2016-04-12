@@ -104,6 +104,21 @@ public class RecycleActivity extends AppCompatActivity {
         R.drawable.trash_blue_1
     };
 
+    String[] blackItemName = {
+            "Comun1",
+            "Comun2",
+            "Comun3",
+            "Comun4",
+            "Comun5"
+    };
+    Integer[] blackImageId = {
+            R.drawable.trash_blue_1,
+            R.drawable.trash_blue_2,
+            R.drawable.trash_blue_1,
+            R.drawable.trash_blue_2,
+            R.drawable.trash_blue_1
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,7 +142,7 @@ public class RecycleActivity extends AppCompatActivity {
         TabHost.TabSpec trashSpec;
         CustomListAdapter trashAdapter;
         trashHost.setup();
-        //Tab 1
+        //Tab 1 - Blue
         trashSpec = trashHost.newTabSpec("Blue");
         trashSpec.setContent(R.id.blue_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_blue, null));
@@ -135,7 +150,7 @@ public class RecycleActivity extends AppCompatActivity {
         trashAdapter = new CustomListAdapter(this, blueItemName, blueImageId);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
-        //Tab 2
+        //Tab 2 - Green
         trashSpec = trashHost.newTabSpec("Green");
         trashSpec.setContent(R.id.green_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_green, null));
@@ -143,7 +158,7 @@ public class RecycleActivity extends AppCompatActivity {
         trashAdapter = new CustomListAdapter(this, greenItemName, greenImageId);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
-        //Tab 3
+        //Tab 3 - Yellow
         trashSpec = trashHost.newTabSpec("Yellow");
         trashSpec.setContent(R.id.yellow_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_yellow, null));
@@ -151,7 +166,7 @@ public class RecycleActivity extends AppCompatActivity {
         trashAdapter = new CustomListAdapter(this, yellowItemName, yellowImageId);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
-        //Tab 4
+        //Tab 4 - Gray
         trashSpec = trashHost.newTabSpec("Gray");
         trashSpec.setContent(R.id.gray_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_gray, null));
@@ -159,7 +174,7 @@ public class RecycleActivity extends AppCompatActivity {
         trashAdapter = new CustomListAdapter(this, grayItemName, grayImageId);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
-        //Tab 5
+        //Tab 5 - Red
         trashSpec = trashHost.newTabSpec("Red");
         trashSpec.setContent(R.id.red_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_red, null));
@@ -167,12 +182,20 @@ public class RecycleActivity extends AppCompatActivity {
         trashAdapter = new CustomListAdapter(this, redItemName, redImageId);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
-        //Tab 6
+        //Tab 6 - Purple
         trashSpec = trashHost.newTabSpec("Purple");
         trashSpec.setContent(R.id.purple_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_purple, null));
         trashList = (ListView)findViewById(R.id.purple_ListView);
         trashAdapter = new CustomListAdapter(this, purpleItemName, purpleImageId);
+        trashList.setAdapter(trashAdapter);
+        trashHost.addTab(trashSpec);
+        //Tab 6 - Black
+        trashSpec = trashHost.newTabSpec("Black");
+        trashSpec.setContent(R.id.black_Layout);
+        trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_black, null));
+        trashList = (ListView)findViewById(R.id.black_ListView);
+        trashAdapter = new CustomListAdapter(this, blackItemName, blackImageId);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
 

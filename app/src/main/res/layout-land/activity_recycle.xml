@@ -354,6 +354,55 @@
                         </ListView>
                     </LinearLayout>
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/black_Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                    <TextView
+                        android:id="@+id/blackTitle_TextView"
+                        android:text="@string/blackTitle_text"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold|italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin15_size" />
+                    <LinearLayout
+                        android:id="@+id/blackDesc_Layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin25_size"
+                        android:layout_marginRight="@dimen/margin25_size"
+                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_below="@id/blackTitle_TextView" >
+                        <ImageView
+                            android:id="@+id/blackCan_ImageView"
+                            android:src="@drawable/btn_main_trash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/blackDesc_text" />
+                        <TextView
+                            android:id="@+id/blackDesc_TextView"
+                            android:text="@string/blackDesc_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin25_size" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/blackList_Layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin100_size"
+                        android:layout_marginRight="@dimen/margin100_size"
+                        android:layout_below="@id/blackDesc_Layout" >
+                        <ListView
+                            android:id="@+id/black_ListView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+                        </ListView>
+                    </LinearLayout>
+                </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

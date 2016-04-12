@@ -19,6 +19,7 @@ public class Utilities {
     public final Point POINT_C_MAIN_FOREST = new Point(785, 72);
     public final Point POINT_D_MAIN_ABOUT = new Point(149, 74);
     public final Point POINT_C_MAIN_ABOUT = new Point(650, 530);
+    public final Point POINT_D_ALL_THRASH = new Point(60,60);
 
     public Point adjustAspect(Point originalDimension, Point currentScreenSize){
         double xScale;

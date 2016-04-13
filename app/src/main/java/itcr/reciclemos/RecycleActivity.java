@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class RecycleActivity extends AppCompatActivity {
 
     ListView trashList;
-    Utilities toolBox = new Utilities();
+    Utilities toolBox = Utilities.getSingleton();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

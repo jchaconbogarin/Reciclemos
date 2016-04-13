@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton forestBtn;
     private ImageButton aboutBtn;
 
-    Utilities toolBox = new Utilities();
+    Utilities toolBox = Utilities.getSingleton();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -103,6 +106,51 @@ public class MainActivity extends AppCompatActivity {
         params.width = adjustedSizeWH.x;
         params.height = adjustedSizeWH.y;
         aboutBtn.setLayoutParams(params);
+
+
+        final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+        //animation.setRepeatCount(2);
+        animation.setDuration(300); // duration - half a second
+        //animation.setStartTime(10000);
+        animation.setStartOffset(10);
+        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+        //final Button btn = (Button) findViewById(R.id.your_btn);
+        forestBtn.startAnimation(animation);
+
+        /*btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                view.clearAnimation();
+            }
+        });*/
+
+        //animation1 AnimationListener
+        /*
+        animation.setAnimationListener(new Animation.AnimationListener(){
+
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                // start animation2 when animation1 ends (continue)
+                //animation.
+                forestBtn.startAnimation(animation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onAnimationStart(Animation arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+*/
     }
 
     @Override

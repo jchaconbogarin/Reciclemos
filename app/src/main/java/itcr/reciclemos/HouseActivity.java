@@ -21,7 +21,7 @@ public class HouseActivity extends AppCompatActivity {
 
     ElementController controller;
     RelativeLayout relativeLayout;
-    Utilities toolBox = new Utilities();
+    Utilities toolBox = Utilities.getSingleton();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

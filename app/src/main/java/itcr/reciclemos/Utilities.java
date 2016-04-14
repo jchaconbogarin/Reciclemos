@@ -8,6 +8,18 @@ import android.widget.Toast;
  * Created by gesab on 4/11/2016.
  */
 public class Utilities {
+
+    private static Utilities singleton;
+
+    private Utilities() { }
+
+    public static Utilities getSingleton() {
+        if (singleton == null) {
+            singleton = new Utilities();
+        }
+        return singleton;
+    }
+
     public final Point POINT_BACKGROUND = new Point(1067, 711);
     public final Point POINT_D_MAIN_RECYCLE = new Point(123, 81);
     public final Point POINT_C_MAIN_RECYCLE = new Point(50, 20);
@@ -76,6 +88,7 @@ public class Utilities {
             "Cáscaras de huevo",
             "Cáscaras de banano"
     };
+
     public final Integer[] INTEGER_GRAY_ALL_DRAWABLE = {
             R.drawable.trash_gray_1,
             R.drawable.trash_gray_2,
@@ -118,6 +131,7 @@ public class Utilities {
     public final String[] STRING_BLACK_ALL_DESC = {
             "Bolsas con basura"
     };
+
     public final Integer[] INTEGER_BLACK_ALL_DRAWABLE = {
             R.drawable.trash_black_1
     };

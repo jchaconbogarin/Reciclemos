@@ -3,8 +3,11 @@ package itcr.reciclemos;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,8 +18,10 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -108,50 +113,26 @@ public class MainActivity extends AppCompatActivity {
         aboutBtn.setLayoutParams(params);
 
 
-        final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-        //animation.setRepeatCount(2);
-        animation.setDuration(300); // duration - half a second
-        //animation.setStartTime(10000);
-        animation.setStartOffset(10);
-        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        final Animation animation = new AlphaAnimation(1, 0.5f); // Change alpha from fully visible to invisible
+        animation.setRepeatCount(3);
+        animation.setDuration(500); // duration - half a second
+        animation.setInterpolator(new FastOutSlowInInterpolator()); // do not alter animation rate
+        //animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+
         //final Button btn = (Button) findViewById(R.id.your_btn);
-        forestBtn.startAnimation(animation);
+        //forestBtn.startAnimation(animation);
 
-        /*btn.setOnClickListener(new OnClickListener() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(final View view) {
-                view.clearAnimation();
-            }
-        });*/
-
-        //animation1 AnimationListener
-        /*
-        animation.setAnimationListener(new Animation.AnimationListener(){
-
-            @Override
-            public void onAnimationEnd(Animation arg0) {
-                // start animation2 when animation1 ends (continue)
-                //animation.
+            public void run() {
+                handler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
                 forestBtn.startAnimation(animation);
             }
-
-            @Override
-            public void onAnimationRepeat(Animation arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onAnimationStart(Animation arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-*/
+        }, toolBox.INT_DELAY_FOREST_ANIMATION);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

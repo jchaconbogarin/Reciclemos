@@ -85,7 +85,7 @@
                         android:layout_below="@id/blueTitle_TextView" >
                         <ImageView
                             android:id="@+id/blueCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_blue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/blueDesc_text" />
@@ -135,7 +135,7 @@
                         android:layout_below="@id/greenTitle_TextView" >
                         <ImageView
                             android:id="@+id/greenCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/greenDesc_text" />
@@ -185,7 +185,7 @@
                         android:layout_below="@id/yellowTitle_TextView" >
                         <ImageView
                             android:id="@+id/yellowCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_yellow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/yellowDesc_text" />
@@ -235,7 +235,7 @@
                         android:layout_below="@id/grayTitle_TextView" >
                         <ImageView
                             android:id="@+id/grayCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_gray"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/grayDesc_text" />
@@ -285,7 +285,7 @@
                         android:layout_below="@id/redTitle_TextView" >
                         <ImageView
                             android:id="@+id/redCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_red"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/redDesc_text" />
@@ -335,7 +335,7 @@
                         android:layout_below="@id/purpleTitle_TextView" >
                         <ImageView
                             android:id="@+id/purpleCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_purple"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/purpleDesc_text" />
@@ -385,7 +385,7 @@
                         android:layout_below="@id/blackTitle_TextView" >
                         <ImageView
                             android:id="@+id/blackCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/blackDesc_text" />

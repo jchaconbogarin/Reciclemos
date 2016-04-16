@@ -21,8 +21,10 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -112,23 +114,31 @@ public class MainActivity extends AppCompatActivity {
         params.height = adjustedSizeWH.y;
         aboutBtn.setLayoutParams(params);
 
-
-        final Animation animation = new AlphaAnimation(1, 0.5f); // Change alpha from fully visible to invisible
-        animation.setRepeatCount(3);
-        animation.setDuration(500); // duration - half a second
-        animation.setInterpolator(new FastOutSlowInInterpolator()); // do not alter animation rate
-        //animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
-        animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-
-        //final Button btn = (Button) findViewById(R.id.your_btn);
-        //forestBtn.startAnimation(animation);
-
+        //Sets the button animation on a thread
+        final Animation interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
+            int i = 0;
             @Override
             public void run() {
+                if(i == 5) { i = 0; }
                 handler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
-                forestBtn.startAnimation(animation);
+                if(i == 0){
+                    recycleBtn.startAnimation(interactiveAnimation);
+                }
+                else if(i == 1){
+                    forestBtn.startAnimation(interactiveAnimation);
+                }
+                else if(i == 2){
+                    houseBtn.startAnimation(interactiveAnimation);
+                }
+                else if(i == 3){
+                    lakeBtn.startAnimation(interactiveAnimation);
+                }
+                else if(i == 4){
+                    aboutBtn.startAnimation(interactiveAnimation);
+                }
+                ++i;
             }
         }, toolBox.INT_DELAY_FOREST_ANIMATION);
     }

@@ -24,7 +24,7 @@ public class Utilities {
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);
     public final Point POINT_D_MAIN_RECYCLE = new Point(123, 81);
-    public final Point POINT_C_MAIN_RECYCLE = new Point(50, 20);
+    public final Point POINT_C_MAIN_RECYCLE = new Point(50, 20);    //Right-Bottom
     public final Point POINT_D_MAIN_HOUSE = new Point(294, 214);
     public final Point POINT_C_MAIN_HOUSE = new Point(199, 80);
     public final Point POINT_D_MAIN_LAKE = new Point(276, 47);
@@ -33,6 +33,8 @@ public class Utilities {
     public final Point POINT_C_MAIN_FOREST = new Point(785, 72);
     public final Point POINT_D_MAIN_ABOUT = new Point(149, 74);
     public final Point POINT_C_MAIN_ABOUT = new Point(650, 530);
+    public final Point POINT_C_HOUSE_BLUE_TRASHCAN = new Point(55,0);
+    public final Point POINT_D_HOUSE_BLUE_TRASHCAN = new Point(149,96);
     public final Point POINT_D_ALL_THRASH = new Point(60,60);
 
     public final int INT_D_ALL_TAB = 100;

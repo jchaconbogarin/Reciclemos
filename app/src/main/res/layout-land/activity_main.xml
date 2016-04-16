@@ -20,36 +20,36 @@
     <include layout="@layout/content_main" />
 
     <ImageButton
-        android:layout_width="@dimen/main_recycle_btn_width"
-        android:layout_height="@dimen/main_recycle_btn_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/recycle_btn"
         android:onClick="showRecycle"
         android:contentDescription="@string/main_recycle_contentDescription"
         android:background="@drawable/btn_main_trash" />
     <ImageButton
-        android:layout_width="@dimen/main_house_btn_width"
-        android:layout_height="@dimen/main_house_btn_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/house_btn"
         android:onClick="showHouse"
         android:contentDescription="@string/main_house_contentDescription"
         android:background="@drawable/btn_main_house" />
     <ImageButton
-        android:layout_width="@dimen/main_lake_btn_width"
-        android:layout_height="@dimen/main_lake_btn_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/lake_btn"
         android:onClick="showLake"
         android:contentDescription="@string/main_lake_contentDescription"
         android:background="@drawable/btn_main_lake" />
     <ImageButton
-        android:layout_width="@dimen/main_forest_btn_width"
-        android:layout_height="@dimen/main_forest_btn_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/forest_btn"
         android:onClick="showForest"
         android:contentDescription="@string/main_forest_contentDescription"
         android:background="@drawable/btn_main_forest" />
     <ImageButton
-        android:layout_width="@dimen/main_about_btn_width"
-        android:layout_height="@dimen/main_about_btn_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/about_btn"
         android:onClick="showAbout"
         android:contentDescription="@string/main_about_contentDescription"

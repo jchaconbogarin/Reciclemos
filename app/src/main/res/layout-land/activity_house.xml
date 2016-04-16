@@ -16,10 +16,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_dialog_email"
-        app:layout_anchorGravity="bottom|end"
-        android:layout_alignParentBottom="true"
+        app:layout_anchorGravity="top|end"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/margin15_size" />
+        android:layout_margin="@dimen/fab_margin" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/blue_trashCan_img"
+        android:contentDescription="@string/blueTitle_text"
+        android:background="@drawable/trashcan_blue" />
 
 </RelativeLayout>

@@ -17,10 +17,7 @@ public class ThrashCan extends Element {
     @Override
     public boolean checkCollision(Element element) {
         if (Rect.intersects(this.updateCollisionRectangle(), element.updateCollisionRectangle())) {
-            System.out.println(this.thrashType);
-            System.out.println(element.thrashType);
             if (this.thrashType == element.thrashType) {
-                System.out.println("It does enter here");
                 element.imageView.setImageResource(0);
             }
         }

@@ -14,12 +14,11 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_dialog_email"
-        app:layout_anchorGravity="top|end"
-        android:layout_alignParentTop="true"
+        android:src="@drawable/btn_all_back"
+        app:layout_anchorGravity="bottom|end"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin" />
+        android:layout_margin="@dimen/margin15_size" />
 
     <ImageView
         android:layout_width="wrap_content"

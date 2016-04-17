@@ -6,11 +6,6 @@ import android.widget.ImageView;
 /**
  * Created by Boga on 11.04.2016.
  */
-enum ElementType {
-    THRASH_CAN, THRASH
-}
-enum ThrashType {BLUE, GREEN, YELLOW, GRAY, PURPLE, BLACK}
-
 public abstract class Element {
 
     protected ImageView imageView;

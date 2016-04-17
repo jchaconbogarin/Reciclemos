@@ -10,6 +10,7 @@ import android.widget.Toast;
 public class Utilities {
 
     private static Utilities singleton;
+    private Point screenSize;
 
     private Utilities() { }
 
@@ -18,6 +19,10 @@ public class Utilities {
             singleton = new Utilities();
         }
         return singleton;
+    }
+
+    public void init(Point screenSize) {
+        this.screenSize = screenSize;
     }
 
     public final int INT_DELAY_FOREST_ANIMATION = 3500;
@@ -158,20 +163,20 @@ public class Utilities {
             R.drawable.trash_black_1
     };
 
-    public Point adjustAspect(Point originalDimension, Point currentScreenSize){
+    public Point adjustAspect(Point originalDimension){
         double xScale;
         double yScale;
-        if(POINT_BACKGROUND.x < currentScreenSize.x){
-            xScale = (double)currentScreenSize.x / POINT_BACKGROUND.x;
+        if(POINT_BACKGROUND.x < screenSize.x){
+            xScale = (double)screenSize.x / POINT_BACKGROUND.x;
         }
         else{
-            xScale = (double)POINT_BACKGROUND.x / currentScreenSize.x;
+            xScale = (double)POINT_BACKGROUND.x / screenSize.x;
         }
-        if(POINT_BACKGROUND.y < currentScreenSize.y){
-            yScale = (double)currentScreenSize.y / POINT_BACKGROUND.y;
+        if(POINT_BACKGROUND.y < screenSize.y){
+            yScale = (double)screenSize.y / POINT_BACKGROUND.y;
         }
         else{
-            yScale = (double)POINT_BACKGROUND.y / currentScreenSize.y;
+            yScale = (double)POINT_BACKGROUND.y / screenSize.y;
         }
         int intNewX = (int) (xScale * originalDimension.x);
         int intNewY = (int) (yScale * originalDimension.y);

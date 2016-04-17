@@ -25,7 +25,7 @@ public class Utilities {
         this.screenSize = screenSize;
     }
 
-    public final int INT_DELAY_FOREST_ANIMATION = 3500;
+    public final int INT_DELAY_FOREST_ANIMATION = 15000;
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);
     public final Point POINT_D_MAIN_RECYCLE = new Point(123, 81);

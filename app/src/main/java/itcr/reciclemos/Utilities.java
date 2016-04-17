@@ -20,21 +20,39 @@ public class Utilities {
         return singleton;
     }
 
-    public final int INT_DELAY_FOREST_ANIMATION = 15000;
+    public final int INT_DELAY_FOREST_ANIMATION = 3500;
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);
     public final Point POINT_D_MAIN_RECYCLE = new Point(123, 81);
     public final Point POINT_C_MAIN_RECYCLE = new Point(50, 20);    //Right-Bottom
     public final Point POINT_D_MAIN_HOUSE = new Point(294, 214);
     public final Point POINT_C_MAIN_HOUSE = new Point(199, 80);
-    public final Point POINT_D_MAIN_LAKE = new Point(276, 47);
-    public final Point POINT_C_MAIN_LAKE = new Point(501, 72);
+    public final Point POINT_D_MAIN_LAKE = new Point(276, 82);
+    public final Point POINT_C_MAIN_LAKE = new Point(501, 60);
     public final Point POINT_D_MAIN_FOREST = new Point(232, 214);
     public final Point POINT_C_MAIN_FOREST = new Point(785, 72);
     public final Point POINT_D_MAIN_ABOUT = new Point(149, 74);
     public final Point POINT_C_MAIN_ABOUT = new Point(650, 530);
+    public final Point POINT_D_ALL_TRASHCAN = new Point(149,96);
     public final Point POINT_C_HOUSE_BLUE_TRASHCAN = new Point(55,0);
-    public final Point POINT_D_HOUSE_BLUE_TRASHCAN = new Point(149,96);
+    public final Point POINT_C_HOUSE_GREEN_TRASHCAN = new Point(257,0);
+    public final Point POINT_C_HOUSE_YELLOW_TRASHCAN = new Point(459,0);
+    public final Point POINT_C_HOUSE_GRAY_TRASHCAN = new Point(661,0);
+    public final Point POINT_C_HOUSE_BLACK_TRASHCAN = new Point(863,0);
+    public final Point POINT_C_LAKE_BLUE_TRASHCAN = new Point(24,0);
+    public final Point POINT_C_LAKE_GREEN_TRASHCAN = new Point(198,0);
+    public final Point POINT_C_LAKE_YELLOW_TRASHCAN = new Point(372,0);
+    public final Point POINT_C_LAKE_GRAY_TRASHCAN = new Point(546,0);
+    public final Point POINT_C_LAKE_RED_TRASHCAN = new Point(720,0);
+    public final Point POINT_C_LAKE_BLACK_TRASHCAN = new Point(894,0);
+    public final Point POINT_C_FOREST_BLUE_TRASHCAN = new Point(3,0);
+    public final Point POINT_C_FOREST_GREEN_TRASHCAN = new Point(155,0);
+    public final Point POINT_C_FOREST_YELLOW_TRASHCAN = new Point(307,0);
+    public final Point POINT_C_FOREST_GRAY_TRASHCAN = new Point(459,0);
+    public final Point POINT_C_FOREST_RED_TRASHCAN = new Point(611,0);
+    public final Point POINT_C_FOREST_PURPLE_TRASHCAN = new Point(763,0);
+    public final Point POINT_C_FOREST_BLACK_TRASHCAN = new Point(915,0);
+
     public final Point POINT_D_ALL_THRASH = new Point(60,60);
 
     public final int INT_D_ALL_TAB = 100;

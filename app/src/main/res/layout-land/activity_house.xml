@@ -28,5 +28,28 @@
         android:id="@+id/blue_trashCan_img"
         android:contentDescription="@string/blueTitle_text"
         android:background="@drawable/trashcan_blue" />
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/green_trashCan_img"
+        android:contentDescription="@string/greenTitle_text"
+        android:background="@drawable/trashcan_green" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yellow_trashCan_img"
+        android:contentDescription="@string/yellowTitle_text"
+        android:background="@drawable/trashcan_yellow" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gray_trashCan_img"
+        android:contentDescription="@string/grayTitle_text"
+        android:background="@drawable/trashcan_gray" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/black_trashCan_img"
+        android:contentDescription="@string/blackTitle_text"
+        android:background="@drawable/trashcan_black" />
 </RelativeLayout>

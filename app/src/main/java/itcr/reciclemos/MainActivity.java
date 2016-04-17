@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton forestBtn;
     private ImageButton aboutBtn;
 
+    private Handler animationHandler;
+    private Runnable animationRunnable;
+
     Utilities toolBox = Utilities.getSingleton();
 
     @Override
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//Hide Title
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Set Full Screen
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
 
         //-- Link the GUI Elements ------------
@@ -114,15 +118,25 @@ public class MainActivity extends AppCompatActivity {
         params.height = adjustedSizeWH.y;
         aboutBtn.setLayoutParams(params);
 
-        //Sets the button animation on a thread
+        animationHandler = new Handler();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        animationHandler.removeCallbacks(animationRunnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         final Animation interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        animationRunnable = new Runnable() {
             int i = 0;
             @Override
             public void run() {
                 if(i == 5) { i = 0; }
-                handler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
                 if(i == 0){
                     recycleBtn.startAnimation(interactiveAnimation);
                 }
@@ -140,9 +154,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ++i;
             }
-        }, toolBox.INT_DELAY_FOREST_ANIMATION);
+        };
+        animationHandler.postDelayed(animationRunnable, toolBox.INT_DELAY_FOREST_ANIMATION);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,12 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

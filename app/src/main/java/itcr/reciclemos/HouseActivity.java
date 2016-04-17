@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
 import itcr.reciclemos.gameengine.ElementController;
+import itcr.reciclemos.gameengine.ThrashType;
 
 public class HouseActivity extends AppCompatActivity {
 
@@ -38,6 +39,9 @@ public class HouseActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_house);
 
+        relativeLayout = (RelativeLayout) findViewById(R.id.house_layout);
+        controller = new ElementController();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +58,13 @@ public class HouseActivity extends AppCompatActivity {
         grayTrashCanImg = (ImageView) findViewById(R.id.gray_trashCan_img);
         blackTrashCanImg = (ImageView) findViewById(R.id.black_trashCan_img);
 
-        //-- Set the Aspect Ratio -------------
-        relativeLayout = (RelativeLayout) findViewById(R.id.house_layout);
-        Display currentDisplay = getWindowManager().getDefaultDisplay();
-        Point currentScreenSize = new Point();
-        currentDisplay.getSize(currentScreenSize);
+        controller.createThrashCan(blueTrashCanImg, ThrashType.BLUE);
+        controller.createThrashCan(greenTrashCanImg, ThrashType.GREEN);
+        controller.createThrashCan(yellowTrashCanImg, ThrashType.YELLOW);
+        controller.createThrashCan(grayTrashCanImg, ThrashType.GRAY);
+        controller.createThrashCan(blackTrashCanImg, ThrashType.BLACK);
+
+        // -- Element Params Initialization --
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         //-- Set location and size for blueTrashCanImg
@@ -134,5 +140,8 @@ public class HouseActivity extends AppCompatActivity {
         params.height = adjustedSizeWH.y;
         iv.setLayoutParams(params);
         relativeLayout.addView(iv);
+
+        controller.createThrash(iv, ThrashType.GRAY);
+
     }
 }

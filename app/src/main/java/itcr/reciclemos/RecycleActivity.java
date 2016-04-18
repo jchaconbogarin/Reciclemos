@@ -60,7 +60,7 @@ public class RecycleActivity extends AppCompatActivity {
         trashSpec.setContent(R.id.yellow_Layout);
         trashSpec.setIndicator("", ResourcesCompat.getDrawable(getResources(), R.drawable.btn_recycle_menu_yellow, null));
         trashList = (ListView)findViewById(R.id.yellow_ListView);
-        trashAdapter = new CustomListAdapter(this, toolBox.STRING_YELLOW_ALL_DESC, toolBox.INTEGER_YELLOWALL_DRAWABLE);
+        trashAdapter = new CustomListAdapter(this, toolBox.STRING_YELLOW_ALL_DESC, toolBox.INTEGER_YELLOW_ALL_DRAWABLE);
         trashList.setAdapter(trashAdapter);
         trashHost.addTab(trashSpec);
         //Tab 4 - Gray

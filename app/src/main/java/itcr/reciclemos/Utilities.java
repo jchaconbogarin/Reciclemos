@@ -2,6 +2,7 @@ package itcr.reciclemos;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
@@ -181,5 +182,21 @@ public class Utilities {
         int intNewX = (int) (xScale * originalDimension.x);
         int intNewY = (int) (yScale * originalDimension.y);
         return new Point(intNewX, intNewY);
+    }
+
+    public RelativeLayout.LayoutParams positionImage(Point coordinates, Point dimensions) {
+        // -- Element Params Initialization --
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        //-- Set location and size for blueTrashCanImg
+        Point adjustedSizeLB = adjustAspect(coordinates);
+        Point adjustedSizeRT = new Point(POINT_BACKGROUND.x - (coordinates.x + dimensions.x), POINT_BACKGROUND.y - (coordinates.y + dimensions.y));
+        Point adjustedSizeWH = adjustAspect(dimensions);
+        adjustedSizeRT = adjustAspect(adjustedSizeRT);
+        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
+        params.width = adjustedSizeWH.x;
+        params.height = adjustedSizeWH.y;
+
+        return params;
     }
 }

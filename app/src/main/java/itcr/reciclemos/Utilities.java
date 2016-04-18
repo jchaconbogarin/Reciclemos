@@ -64,7 +64,7 @@ public class Utilities {
     public final int POINT_C_ALL_PLAYABLE_TOP = 120;
     public final int POINT_C_ALL_PLAYABLE_BOTTOM = 166;
 
-    public final int INT_D_ALL_TAB = 100;
+    public final int INT_D_ALL_TAB = 200;
 
     public final String[] STRING_BLUE_ALL_DESC = {
             "Papel periódico",

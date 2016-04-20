@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Toast;
+
 import java.util.Random;
 
 import itcr.reciclemos.gameengine.ElementController;
@@ -70,24 +72,29 @@ public class HouseActivity extends AppCompatActivity {
         yellowTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_YELLOW_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         grayTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_GRAY_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
-/*
+
+
+        ImageView iv;
+
+        //------------- Pasar a utilities luego ---------------------
         int MAX_TRASH_HOUSE = 3;
+
         Random r = new Random();
         int trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
-        Point trashLocations[] = new Point[];
+        //Point trashLocations[] = new Point[];     //Conserva las coordenadas donde se genero para no repetir
 
-        for(int i = 0; i < 5; i++){
 
+        int trashNumber;
+        for(int i = 0; i < trashQuantity; i++){
+            trashNumber = r.nextInt(toolBox.INTEGER_GRAY_ALL_DRAWABLE.length);
+            iv = new ImageView(this);
+            iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[trashNumber]);
+            iv.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));
+            relativeLayout.addView(iv);
+            controller.createThrash(iv, ThrashType.GRAY);
         }
-*/
-        
 
-        ImageView iv = new ImageView(this);
-        iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[1]);
-        iv.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));
-        relativeLayout.addView(iv);
 
-        controller.createThrash(iv, ThrashType.GRAY);
-
+        //Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + controller.getAllTrash().size(), Toast.LENGTH_SHORT).show();
     }
 }

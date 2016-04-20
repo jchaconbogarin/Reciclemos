@@ -28,6 +28,10 @@ public class ElementController {
     *
     * */
 
+    public List getAllTrash(){
+        return allThrash;
+    }
+
     public void createThrash(ImageView imageView, ThrashType thrashType) {
         allThrash.add(new Thrash(imageView, thrashType, this));
     }

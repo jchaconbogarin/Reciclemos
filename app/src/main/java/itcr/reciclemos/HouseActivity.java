@@ -75,13 +75,15 @@ public class HouseActivity extends AppCompatActivity {
         Random r = new Random();
         int trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
         Point trashLocations[] = new Point[];
-        ImageView Gra
+
         for(int i = 0; i < 5; i++){
 
         }
 */
+        
+
         ImageView iv = new ImageView(this);
-        iv.setImageResource(R.drawable.trash_gray_2);
+        iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[1]);
         iv.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));
         relativeLayout.addView(iv);
 

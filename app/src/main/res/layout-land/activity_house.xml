@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="itcr.reciclemos.HouseActivity"
-    android:background="@drawable/bg_house">
+    android:background="@drawable/bg_house"
+    android:id="@+id/house_layout">
 
     <include layout="@layout/content_house" />
 
@@ -14,11 +15,40 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_dialog_email"
+        android:src="@drawable/btn_all_back"
         app:layout_anchorGravity="bottom|end"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/margin15_size" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/blue_trashCan_img"
+        android:contentDescription="@string/blueTitle_text"
+        android:background="@drawable/trashcan_blue" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/green_trashCan_img"
+        android:contentDescription="@string/greenTitle_text"
+        android:background="@drawable/trashcan_green" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yellow_trashCan_img"
+        android:contentDescription="@string/yellowTitle_text"
+        android:background="@drawable/trashcan_yellow" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gray_trashCan_img"
+        android:contentDescription="@string/grayTitle_text"
+        android:background="@drawable/trashcan_gray" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/black_trashCan_img"
+        android:contentDescription="@string/blackTitle_text"
+        android:background="@drawable/trashcan_black" />
 </RelativeLayout>

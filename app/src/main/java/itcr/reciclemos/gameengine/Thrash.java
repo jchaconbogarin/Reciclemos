@@ -23,6 +23,7 @@ public class Thrash extends Element implements View.OnTouchListener {
                 originalY = imageView.getY();
             }
         });
+        this.updateCollisionRectangle();
     }
 
     public boolean onTouch(View view, MotionEvent event) {

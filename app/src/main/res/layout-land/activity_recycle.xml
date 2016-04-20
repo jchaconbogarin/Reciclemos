@@ -59,7 +59,8 @@
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin25_size" >
+                android:layout_margin="@dimen/margin15_size"
+                android:layout_marginTop="@dimen/margin10_size" >
 
                 <RelativeLayout
                     android:id="@+id/blue_Layout"
@@ -80,11 +81,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/blueTitle_TextView" >
                         <ImageView
                             android:id="@+id/blueCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_blue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/blueDesc_text" />
@@ -93,7 +94,8 @@
                             android:text="@string/blueDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/blueList_Layout"
@@ -101,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin100_size"
                         android:layout_marginRight="@dimen/margin100_size"
-                        android:layout_below="@id/blueDesc_Layout" >
+                        android:layout_below="@+id/blueDesc_Layout" >
                         <ListView
                             android:id="@+id/blue_ListView"
                             android:layout_width="match_parent"
@@ -129,11 +131,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/greenTitle_TextView" >
                         <ImageView
                             android:id="@+id/greenCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/greenDesc_text" />
@@ -142,7 +144,8 @@
                             android:text="@string/greenDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/greenList_Layout"
@@ -178,11 +181,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/yellowTitle_TextView" >
                         <ImageView
                             android:id="@+id/yellowCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_yellow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/yellowDesc_text" />
@@ -191,7 +194,8 @@
                             android:text="@string/yellowDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/yellowList_Layout"
@@ -227,11 +231,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/grayTitle_TextView" >
                         <ImageView
                             android:id="@+id/grayCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_gray"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/grayDesc_text" />
@@ -240,7 +244,8 @@
                             android:text="@string/grayDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/grayList_Layout"
@@ -276,11 +281,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/redTitle_TextView" >
                         <ImageView
                             android:id="@+id/redCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_red"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/redDesc_text" />
@@ -289,7 +294,8 @@
                             android:text="@string/redDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/redList_Layout"
@@ -325,11 +331,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/purpleTitle_TextView" >
                         <ImageView
                             android:id="@+id/purpleCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_purple"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/purpleDesc_text" />
@@ -338,7 +344,8 @@
                             android:text="@string/purpleDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/purpleList_Layout"
@@ -374,11 +381,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin25_size"
                         android:layout_marginRight="@dimen/margin25_size"
-                        android:layout_marginBottom="@dimen/margin15_size"
+                        android:layout_marginBottom="@dimen/margin10_size"
                         android:layout_below="@id/blackTitle_TextView" >
                         <ImageView
                             android:id="@+id/blackCan_ImageView"
-                            android:src="@drawable/btn_main_trash"
+                            android:src="@drawable/trashcan_recycle_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/blackDesc_text" />
@@ -387,7 +394,8 @@
                             android:text="@string/blackDesc_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin25_size" />
+                            android:layout_marginLeft="@dimen/margin25_size"
+                            android:textSize="@dimen/all_text_size" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/blackList_Layout"

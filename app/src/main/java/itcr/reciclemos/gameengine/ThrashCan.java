@@ -1,6 +1,7 @@
 package itcr.reciclemos.gameengine;
 
 import android.graphics.Rect;
+import android.provider.Settings;
 import android.widget.ImageView;
 
 /**
@@ -8,15 +9,16 @@ import android.widget.ImageView;
  */
 public class ThrashCan extends Element {
 
-    public ThrashCan(ImageView image_view, ThrashType thrashType, ElementController controller) {
-        super(image_view, ElementType.THRASH_CAN, thrashType, controller);
+    public ThrashCan(ImageView imageView, ThrashType thrashType, ElementController controller) {
+        super(imageView, ElementType.THRASH_CAN, thrashType, controller);
+        this.updateCollisionRectangle();
     }
 
     @Override
     public boolean checkCollision(Element element) {
         if (Rect.intersects(this.updateCollisionRectangle(), element.updateCollisionRectangle())) {
             if (this.thrashType == element.thrashType) {
-                element.removeImage();
+                element.imageView.setImageResource(0);
             }
         }
         return true;

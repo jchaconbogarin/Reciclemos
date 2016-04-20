@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import java.util.Random;
 
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
@@ -69,7 +70,16 @@ public class HouseActivity extends AppCompatActivity {
         yellowTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_YELLOW_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         grayTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_GRAY_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
+/*
+        int MAX_TRASH_HOUSE = 3;
+        Random r = new Random();
+        int trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
+        Point trashLocations[] = new Point[];
+        ImageView Gra
+        for(int i = 0; i < 5; i++){
 
+        }
+*/
         ImageView iv = new ImageView(this);
         iv.setImageResource(R.drawable.trash_gray_2);
         iv.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));

@@ -5,6 +5,7 @@ package itcr.reciclemos.gameengine;
  */
 
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,10 @@ public class ElementController {
         allThrash.add(new Thrash(imageView, thrashType, this));
     }
 
+    public void removeThrash(Thrash thrash) {
+        allThrash.remove(thrash);
+    }
+
     public void createThrashCan(ImageView imageView, ThrashType thrashType) {
         thrashCans.add(new ThrashCan(imageView, thrashType, this));
     }
@@ -46,12 +51,15 @@ public class ElementController {
     *
     * */
 
-    public void checkCollision(Element element) {
-
+    public boolean checkCollision(Element element) {
+        boolean result = false;
         for (ThrashCan thrashCan : this.thrashCans) {
-            thrashCan.checkCollision(element);
+            if (thrashCan.checkCollision(element)) {
+                result = true;
+                break;
+            }
         }
-
+        return result;
     }
 
 }

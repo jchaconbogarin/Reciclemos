@@ -85,15 +85,41 @@ public class HouseActivity extends AppCompatActivity {
 
 
         int trashNumber;
-        for(int i = 0; i < trashQuantity; i++){
-            trashNumber = r.nextInt(toolBox.INTEGER_GRAY_ALL_DRAWABLE.length);
-            iv = new ImageView(this);
-            iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[trashNumber]);
-            iv.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));
-            relativeLayout.addView(iv);
-            controller.createThrash(iv, ThrashType.GRAY);
-        }
+        Point coords;
+        for (ThrashType trashTypes : ThrashType.values()) {
+            if(trashTypes != ThrashType.RED && trashTypes != ThrashType.PURPLE){
+                for(int i = 0; i < trashQuantity; i++){
+                    iv = new ImageView(this);
+                    if(trashTypes == ThrashType.BLUE) {
+                        trashNumber = r.nextInt(toolBox.INTEGER_BLUE_ALL_DRAWABLE.length);
+                        iv.setImageResource(toolBox.INTEGER_BLUE_ALL_DRAWABLE[trashNumber]);
+                    }
+                    else if(trashTypes == ThrashType.GREEN) {
+                        trashNumber = r.nextInt(toolBox.INTEGER_GREEN_ALL_DRAWABLE.length);
+                        iv.setImageResource(toolBox.INTEGER_GREEN_ALL_DRAWABLE[trashNumber]);
+                    }
+                    else if(trashTypes == ThrashType.YELLOW) {
+                        trashNumber = r.nextInt(toolBox.INTEGER_YELLOW_ALL_DRAWABLE.length);
+                        iv.setImageResource(toolBox.INTEGER_YELLOW_ALL_DRAWABLE[trashNumber]);
+                    }
+                    else if(trashTypes == ThrashType.GRAY) {
+                        trashNumber = r.nextInt(toolBox.INTEGER_GRAY_ALL_DRAWABLE.length);
+                        iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[trashNumber]);
+                    }
+                    else if(trashTypes == ThrashType.BLACK) {
+                        trashNumber = r.nextInt(toolBox.INTEGER_BLACK_ALL_DRAWABLE.length);
+                        iv.setImageResource(toolBox.INTEGER_BLACK_ALL_DRAWABLE[trashNumber]);
+                    }
 
+                    coords = new Point(r.nextInt(toolBox.POINT_BACKGROUND.x)-toolBox.POINT_D_ALL_THRASH.x+1, r.nextInt(toolBox.POINT_BACKGROUND.y-toolBox.POINT_C_ALL_PLAYABLE_TOP-toolBox.POINT_C_ALL_PLAYABLE_BOTTOM)+toolBox.POINT_C_ALL_PLAYABLE_BOTTOM);
+
+                    iv.setLayoutParams(toolBox.positionImage(coords, toolBox.POINT_D_ALL_THRASH));
+                    relativeLayout.addView(iv);
+                    controller.createThrash(iv, trashTypes);
+                }
+                trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
+            }
+        }
 
         //Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + controller.getAllTrash().size(), Toast.LENGTH_SHORT).show();
     }

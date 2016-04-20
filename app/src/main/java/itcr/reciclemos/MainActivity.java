@@ -1,7 +1,9 @@
 package itcr.reciclemos;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -122,6 +124,13 @@ public class MainActivity extends AppCompatActivity {
         params.height = adjustedSizeWH.y;
         aboutBtn.setLayoutParams(params);
 
+        houseBtn.setEnabled(false);
+        lakeBtn.setEnabled(false);
+        forestBtn.setEnabled(false);
+        houseBtn.setAlpha(0.3f);
+        lakeBtn.setAlpha(0.3f);
+        forestBtn.setAlpha(0.3f);
+
         animationHandler = new Handler();
     }
 
@@ -140,21 +149,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(i == 5) { i = 0; }
-                animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
                 if(i == 0){
+                    animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
                     recycleBtn.startAnimation(interactiveAnimation);
                 }
                 else if(i == 1){
-                    forestBtn.startAnimation(interactiveAnimation);
+                    animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                    aboutBtn.startAnimation(interactiveAnimation);
                 }
                 else if(i == 2){
-                    houseBtn.startAnimation(interactiveAnimation);
+                    if(forestBtn.isEnabled()){
+                        animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                        forestBtn.startAnimation(interactiveAnimation);
+                    }
+                    else{
+                        animationHandler.postDelayed(this, 0);
+                    }
                 }
                 else if(i == 3){
-                    lakeBtn.startAnimation(interactiveAnimation);
+                    if(houseBtn.isEnabled()){
+                        animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                        houseBtn.startAnimation(interactiveAnimation);
+                    }
+                    else{
+                        animationHandler.postDelayed(this, 0);
+                    }
                 }
                 else if(i == 4){
-                    aboutBtn.startAnimation(interactiveAnimation);
+                    if(lakeBtn.isEnabled()) {
+                        animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                        lakeBtn.startAnimation(interactiveAnimation);
+                    }
+                    else{
+                        animationHandler.postDelayed(this, 0);
+                    }
                 }
                 ++i;
             }
@@ -203,6 +231,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showRecycle(View view){
+        houseBtn.setAlpha(1f);
+        lakeBtn.setAlpha(1f);
+        forestBtn.setAlpha(1f);
+        houseBtn.setEnabled(true);
+        lakeBtn.setEnabled(true);
+        forestBtn.setEnabled(true);
+
         Intent startRecycle = new Intent(this, RecycleActivity.class);
         startActivity(startRecycle);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);

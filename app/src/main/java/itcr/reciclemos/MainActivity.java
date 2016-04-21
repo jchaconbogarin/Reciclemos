@@ -174,9 +174,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == toolBox.INT_PICK_DATA_ACTIVITY){
             if (resultCode == RESULT_OK){
                 String strLevelState = data.getStringExtra(toolBox.STR_ENABLE_ALL_LEVEL);
-
-                Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + strLevelState, Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + strLevelState, Toast.LENGTH_SHORT).show();
                 if (strLevelState.equals(toolBox.STR_CODE_HOUSE_LEVEL)){
                     houseBtn.setEnabled(true);
                     houseBtn.setAlpha(1f);

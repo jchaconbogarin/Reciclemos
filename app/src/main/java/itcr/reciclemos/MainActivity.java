@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -206,6 +207,31 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == toolBox.INT_PICK_DATA_ACTIVITY){
+            if (resultCode == RESULT_OK){
+                String strLevelState = data.getStringExtra(toolBox.STR_ENABLE_ALL_LEVEL);
+
+                Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + strLevelState, Toast.LENGTH_SHORT).show();
+
+                if (strLevelState.equals(toolBox.STR_CODE_HOUSE_LEVEL)){
+                    houseBtn.setEnabled(true);
+                    houseBtn.setAlpha(1f);
+                }
+                else if (strLevelState.equals(toolBox.STR_CODE_LAKE_LEVEL)){
+                    lakeBtn.setEnabled(true);
+                    lakeBtn.setAlpha(1f);
+                }
+                else if (strLevelState.equals(toolBox.STR_CODE_FOREST_LEVEL)){
+                    forestBtn.setEnabled(true);
+                    forestBtn.setAlpha(1f);
+                }
+            }
+        }
+    }
+
     public void showAbout(View view){
         Intent startAbout = new Intent(this, AboutActivity.class);
         startActivity(startAbout);
@@ -220,26 +246,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHouse(View view){
         Intent startHouse = new Intent(this, HouseActivity.class);
-        startActivity(startHouse);
+        startActivityForResult(startHouse, toolBox.INT_PICK_DATA_ACTIVITY);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
     public void showLake(View view){
         Intent startLake = new Intent(this, LakeActivity.class);
-        startActivity(startLake);
+        startActivityForResult(startLake, toolBox.INT_PICK_DATA_ACTIVITY);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
     public void showRecycle(View view){
-        houseBtn.setAlpha(1f);
-        lakeBtn.setAlpha(1f);
-        forestBtn.setAlpha(1f);
-        houseBtn.setEnabled(true);
-        lakeBtn.setEnabled(true);
-        forestBtn.setEnabled(true);
-
         Intent startRecycle = new Intent(this, RecycleActivity.class);
-        startActivity(startRecycle);
+        startActivityForResult(startRecycle, toolBox.INT_PICK_DATA_ACTIVITY);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 }

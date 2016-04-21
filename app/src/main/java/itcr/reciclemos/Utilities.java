@@ -26,6 +26,14 @@ public class Utilities {
         this.screenSize = screenSize;
     }
 
+    public final int INT_PICK_DATA_ACTIVITY = 1;
+    public final String STR_ENABLE_ALL_LEVEL = "ENABLE_LEVEL";
+    public final String STR_FAIL_ALL_LEVEL = "-1";
+    public final String STR_CODE_HOUSE_LEVEL = "1";
+    public final String STR_CODE_LAKE_LEVEL = "2";
+    public final String STR_CODE_FOREST_LEVEL = "3";
+    public final int INT_MAX_ALL_TRASH = 5;
+
     public final int INT_DELAY_FOREST_ANIMATION = 5000;
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);

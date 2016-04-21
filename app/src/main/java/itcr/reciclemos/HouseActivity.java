@@ -1,5 +1,6 @@
 package itcr.reciclemos;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,9 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
-
 import java.util.Random;
-
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
 
@@ -49,6 +48,9 @@ public class HouseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
+                setResult(RESULT_OK, resultIntent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
@@ -77,10 +79,10 @@ public class HouseActivity extends AppCompatActivity {
         ImageView iv;
 
         //------------- Pasar a utilities luego ---------------------
-        int MAX_TRASH_HOUSE = 3;
+        //int MAX_TRASH_HOUSE = 3;
 
         Random r = new Random();
-        int trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
+        int trashQuantity = r.nextInt(toolBox.INT_MAX_ALL_TRASH) + 1;
         //Point trashLocations[] = new Point[];     //Conserva las coordenadas donde se genero para no repetir
 
 
@@ -117,10 +119,10 @@ public class HouseActivity extends AppCompatActivity {
                     relativeLayout.addView(iv);
                     controller.createThrash(iv, trashTypes);
                 }
-                trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
+                trashQuantity = r.nextInt(toolBox.INT_MAX_ALL_TRASH) + 1;
             }
         }
 
-        //Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + controller.getAllTrash().size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + controller.getAllTrash().size(), Toast.LENGTH_SHORT).show();
     }
 }

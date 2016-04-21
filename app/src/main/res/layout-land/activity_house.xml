@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="itcr.reciclemos.HouseActivity"
     android:background="@drawable/bg_house"
-    android:id="@+id/house_layout">
+    android:id="@+id/house_layout" >
 
     <include layout="@layout/content_house" />
 

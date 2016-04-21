@@ -55,13 +55,6 @@ public class HouseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
-                setResult(RESULT_OK, resultIntent);
-                finish();
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                */
                 goBack();
             }
         });
@@ -91,37 +84,27 @@ public class HouseActivity extends AppCompatActivity {
             relativeLayout.addView(iv);
         }
 
-        GameTicker countDown = new GameTicker(toolBox.INT_MILISECONDS_HOUSE_TIMER, 1000, 1000) {
-            ProgressBar test1 = (ProgressBar) findViewById(R.id.progressBar);
-            int i = 100;
-            int j = i/(toolBox.INT_MILISECONDS_HOUSE_TIMER/1000);
+        GameTicker gameTicker = new GameTicker(toolBox.INT_MILLISECONDS_HOUSE_TIMER, 1000, 1000) {
+            ProgressBar gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+            int progressInit = 100;
+            int progressRate = progressInit / (toolBox.INT_MILLISECONDS_HOUSE_TIMER/1000);
 
             @Override
             public void onTick(long timeLeft) {
-                i -= j;
-                test1.setProgress(i);
+                progressInit -= progressRate;
+                gameProgressBar.setProgress(progressInit);
             }
 
             @Override
             public void onFinished() {
                 onTick(0);
-                test1.setProgress(0);
                 //CHECK GAME STATUS AND SHOW MESSAGE
             }
         };
-        countDown.start();
-    }
-
-    private void goBack(){
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
-        setResult(RESULT_OK, resultIntent);
-        finish();
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        gameTicker.start();
     }
 
     public void onBackPressed(){
-        // do something here and don't write super.onBackPressed()
         goBack();
     }
 
@@ -133,5 +116,14 @@ public class HouseActivity extends AppCompatActivity {
                 return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void goBack(){
+        Intent resultIntent = new Intent();
+        //Si no gano enviar STR_CODE_ALL_LEVEL
+        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 }

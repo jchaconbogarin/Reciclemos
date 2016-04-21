@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -124,5 +125,28 @@ public class RecycleActivity extends AppCompatActivity {
             }
         });
         */
+    }
+
+    public void onBackPressed(){
+        goBack();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                goBack();
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void goBack(){
+        Intent resultIntent = new Intent();
+        //Si no gano enviar STR_CODE_ALL_LEVEL
+        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_HOUSE_LEVEL);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 }

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="itcr.reciclemos.ForestActivity"
-    android:background="@drawable/bg_forest">
+    android:background="@drawable/bg_forest"
+    android:id="@+id/forest_layout" >
 
     <include layout="@layout/content_forest" />
 
@@ -62,4 +63,17 @@
         android:id="@+id/black_trashCan_img"
         android:contentDescription="@string/blackTitle_text"
         android:background="@drawable/trashcan_black" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:progress="100"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin50_size"
+        android:maxHeight="@dimen/progressbar_height"
+        android:minHeight="@dimen/progressbar_height"
+        android:maxWidth="@dimen/progressbar_width"
+        android:minWidth="@dimen/progressbar_width" />
 </RelativeLayout>

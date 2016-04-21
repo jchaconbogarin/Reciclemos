@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="itcr.reciclemos.LakeActivity"
-    android:background="@drawable/bg_lake">
+    android:background="@drawable/bg_lake"
+    android:id="@+id/lake_layout" >
 
     <include layout="@layout/content_lake" />
 
@@ -56,4 +57,17 @@
         android:id="@+id/black_trashCan_img"
         android:contentDescription="@string/blackTitle_text"
         android:background="@drawable/trashcan_black" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:progress="100"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin20_size"
+        android:maxHeight="@dimen/progressbar_height"
+        android:minHeight="@dimen/progressbar_height"
+        android:maxWidth="@dimen/progressbar_width"
+        android:minWidth="@dimen/progressbar_width" />
 </RelativeLayout>

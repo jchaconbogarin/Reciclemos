@@ -3,7 +3,9 @@ package itcr.reciclemos;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -71,62 +73,18 @@ public class MainActivity extends AppCompatActivity {
         forestBtn = (ImageButton) findViewById(R.id.forest_btn);
         aboutBtn = (ImageButton) findViewById(R.id.about_btn);
 
-        // -- Intialize GUI Elements params --
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        recycleBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));
+        houseBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_HOUSE, toolBox.POINT_D_MAIN_HOUSE));
+        lakeBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_LAKE, toolBox.POINT_D_MAIN_LAKE));
+        forestBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_FOREST, toolBox.POINT_D_MAIN_FOREST));
+        aboutBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_ABOUT, toolBox.POINT_D_MAIN_ABOUT));
 
-        //-- Set location and size for recycleBtn
-        Point adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_RECYCLE);
-        Point adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_RECYCLE.x + toolBox.POINT_D_MAIN_RECYCLE.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_RECYCLE.y + toolBox.POINT_D_MAIN_RECYCLE.y));
-        Point adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_RECYCLE);
-        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT);
-        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
-        params.width = adjustedSizeWH.x;
-        params.height = adjustedSizeWH.y;
-        recycleBtn.setLayoutParams(params);
-
-        //-- Set location and size for houseBtn
-        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_HOUSE);
-        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_HOUSE.x + toolBox.POINT_D_MAIN_HOUSE.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_HOUSE.y + toolBox.POINT_D_MAIN_HOUSE.y));
-        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_HOUSE);
-        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT);
-        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
-        params.width = adjustedSizeWH.x;
-        params.height = adjustedSizeWH.y;
-        houseBtn.setLayoutParams(params);
-
-        //-- Set location and size for lakeBtn
-        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_LAKE);
-        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_LAKE.x + toolBox.POINT_D_MAIN_LAKE.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_LAKE.y + toolBox.POINT_D_MAIN_LAKE.y));
-        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_LAKE);
-        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT);
-        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
-        params.width = adjustedSizeWH.x;
-        params.height = adjustedSizeWH.y;
-        lakeBtn.setLayoutParams(params);
-
-        //-- Set location and size for forestBtn
-        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_FOREST);
-        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_FOREST.x + toolBox.POINT_D_MAIN_FOREST.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_FOREST.y + toolBox.POINT_D_MAIN_FOREST.y));
-        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_FOREST);
-        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT);
-        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
-        params.width = adjustedSizeWH.x;
-        params.height = adjustedSizeWH.y;
-        forestBtn.setLayoutParams(params);
-
-        //-- Set location and size for aboutBtn
-        params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        adjustedSizeLB = toolBox.adjustAspect(toolBox.POINT_C_MAIN_ABOUT);
-        adjustedSizeRT = new Point(toolBox.POINT_BACKGROUND.x - (toolBox.POINT_C_MAIN_ABOUT.x + toolBox.POINT_D_MAIN_ABOUT.x), toolBox.POINT_BACKGROUND.y - (toolBox.POINT_C_MAIN_ABOUT.y + toolBox.POINT_D_MAIN_ABOUT.y));
-        adjustedSizeWH = toolBox.adjustAspect(toolBox.POINT_D_MAIN_ABOUT);
-        adjustedSizeRT = toolBox.adjustAspect(adjustedSizeRT);
-        params.setMargins(adjustedSizeLB.x, adjustedSizeRT.y, adjustedSizeRT.x, adjustedSizeLB.y);
-        params.width = adjustedSizeWH.x;
-        params.height = adjustedSizeWH.y;
-        aboutBtn.setLayoutParams(params);
+        houseBtn.setEnabled(false);
+        lakeBtn.setEnabled(false);
+        forestBtn.setEnabled(false);
+        houseBtn.setAlpha(0.3f);
+        lakeBtn.setAlpha(0.3f);
+        forestBtn.setAlpha(0.3f);
 
         animationHandler = new Handler();
 
@@ -152,21 +110,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(i == 5) { i = 0; }
-                animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
                 if(i == 0){
+                    animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
                     recycleBtn.startAnimation(interactiveAnimation);
                 }
                 else if(i == 1){
-                    forestBtn.startAnimation(interactiveAnimation);
+                    animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                    aboutBtn.startAnimation(interactiveAnimation);
                 }
                 else if(i == 2){
-                    houseBtn.startAnimation(interactiveAnimation);
+                    if(forestBtn.isEnabled()){
+                        animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                        forestBtn.startAnimation(interactiveAnimation);
+                    }
+                    else{
+                        animationHandler.postDelayed(this, 0);
+                    }
                 }
                 else if(i == 3){
-                    lakeBtn.startAnimation(interactiveAnimation);
+                    if(houseBtn.isEnabled()){
+                        animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                        houseBtn.startAnimation(interactiveAnimation);
+                    }
+                    else{
+                        animationHandler.postDelayed(this, 0);
+                    }
                 }
                 else if(i == 4){
-                    aboutBtn.startAnimation(interactiveAnimation);
+                    if(lakeBtn.isEnabled()) {
+                        animationHandler.postDelayed(this, toolBox.INT_DELAY_FOREST_ANIMATION);
+                        lakeBtn.startAnimation(interactiveAnimation);
+                    }
+                    else{
+                        animationHandler.postDelayed(this, 0);
+                    }
                 }
                 ++i;
             }
@@ -215,6 +192,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showRecycle(View view){
+        houseBtn.setAlpha(1f);
+        lakeBtn.setAlpha(1f);
+        forestBtn.setAlpha(1f);
+        houseBtn.setEnabled(true);
+        lakeBtn.setEnabled(true);
+        forestBtn.setEnabled(true);
+
         Intent startRecycle = new Intent(this, RecycleActivity.class);
         startActivity(startRecycle);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);

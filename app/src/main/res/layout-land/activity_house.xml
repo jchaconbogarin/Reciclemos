@@ -51,22 +51,17 @@
         android:id="@+id/black_trashCan_img"
         android:contentDescription="@string/blackTitle_text"
         android:background="@drawable/trashcan_black" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/textView"
-        android:layout_alignTop="@+id/fab"
-        android:layout_centerHorizontal="true"
-        android:gravity="center" />
-
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
-        android:layout_alignBottom="@+id/fab"
-        android:layout_centerHorizontal="true" />
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:progress="100"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin20_size"
+        android:maxHeight="@dimen/progressbar_height"
+        android:minHeight="@dimen/progressbar_height"
+        android:maxWidth="@dimen/progressbar_width"
+        android:minWidth="@dimen/progressbar_width" />
 </RelativeLayout>

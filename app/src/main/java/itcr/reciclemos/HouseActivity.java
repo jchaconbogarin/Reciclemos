@@ -1,18 +1,22 @@
 package itcr.reciclemos;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
@@ -51,11 +55,14 @@ public class HouseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
                 setResult(RESULT_OK, resultIntent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                */
+                goBack();
             }
         });
 
@@ -83,5 +90,48 @@ public class HouseActivity extends AppCompatActivity {
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
         }
+
+        GameTicker countDown = new GameTicker(toolBox.INT_MILISECONDS_HOUSE_TIMER, 1000, 1000) {
+            ProgressBar test1 = (ProgressBar) findViewById(R.id.progressBar);
+            int i = 100;
+            int j = i/(toolBox.INT_MILISECONDS_HOUSE_TIMER/1000);
+
+            @Override
+            public void onTick(long timeLeft) {
+                i -= j;
+                test1.setProgress(i);
+            }
+
+            @Override
+            public void onFinished() {
+                onTick(0);
+                test1.setProgress(0);
+                //CHECK GAME STATUS AND SHOW MESSAGE
+            }
+        };
+        countDown.start();
+    }
+
+    private void goBack(){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
+        setResult(RESULT_OK, resultIntent);
+        finish();
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    public void onBackPressed(){
+        // do something here and don't write super.onBackPressed()
+        goBack();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                goBack();
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

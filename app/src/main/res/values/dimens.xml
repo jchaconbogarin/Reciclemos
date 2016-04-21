@@ -9,7 +9,10 @@
     <dimen name="margin5_size">5dp</dimen>
     <dimen name="margin10_size">10dp</dimen>
     <dimen name="margin15_size">15dp</dimen>
+    <dimen name="margin20_size">20dp</dimen>
     <dimen name="margin25_size">25dp</dimen>
     <dimen name="margin50_size">50dp</dimen>
     <dimen name="margin100_size">100dp</dimen>
+    <dimen name="progressbar_height">30dp</dimen>
+    <dimen name="progressbar_width">400dp</dimen>
 </resources>

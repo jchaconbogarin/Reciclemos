@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
+import java.util.List;
 import java.util.Random;
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
@@ -32,6 +33,8 @@ public class HouseActivity extends AppCompatActivity {
     ElementController controller;
     RelativeLayout relativeLayout;
     Utilities toolBox = Utilities.getSingleton();
+    private final int MAX_THRASH = 3;
+    ThrashType[] THRASH_TYPES = { ThrashType.BLUE, ThrashType.GREEN, ThrashType.YELLOW, ThrashType.GRAY, ThrashType.BLACK };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,54 +78,10 @@ public class HouseActivity extends AppCompatActivity {
         grayTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_GRAY_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
+        List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
 
-        ImageView iv;
-
-        //------------- Pasar a utilities luego ---------------------
-        //int MAX_TRASH_HOUSE = 3;
-
-        Random r = new Random();
-        int trashQuantity = r.nextInt(toolBox.INT_MAX_ALL_TRASH) + 1;
-        //Point trashLocations[] = new Point[];     //Conserva las coordenadas donde se genero para no repetir
-
-
-        int trashNumber;
-        Point coords;
-        for (ThrashType trashTypes : ThrashType.values()) {
-            if(trashTypes != ThrashType.RED && trashTypes != ThrashType.PURPLE){
-                for(int i = 0; i < trashQuantity; i++){
-                    iv = new ImageView(this);
-                    if(trashTypes == ThrashType.BLUE) {
-                        trashNumber = r.nextInt(toolBox.INTEGER_BLUE_ALL_DRAWABLE.length);
-                        iv.setImageResource(toolBox.INTEGER_BLUE_ALL_DRAWABLE[trashNumber]);
-                    }
-                    else if(trashTypes == ThrashType.GREEN) {
-                        trashNumber = r.nextInt(toolBox.INTEGER_GREEN_ALL_DRAWABLE.length);
-                        iv.setImageResource(toolBox.INTEGER_GREEN_ALL_DRAWABLE[trashNumber]);
-                    }
-                    else if(trashTypes == ThrashType.YELLOW) {
-                        trashNumber = r.nextInt(toolBox.INTEGER_YELLOW_ALL_DRAWABLE.length);
-                        iv.setImageResource(toolBox.INTEGER_YELLOW_ALL_DRAWABLE[trashNumber]);
-                    }
-                    else if(trashTypes == ThrashType.GRAY) {
-                        trashNumber = r.nextInt(toolBox.INTEGER_GRAY_ALL_DRAWABLE.length);
-                        iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[trashNumber]);
-                    }
-                    else if(trashTypes == ThrashType.BLACK) {
-                        trashNumber = r.nextInt(toolBox.INTEGER_BLACK_ALL_DRAWABLE.length);
-                        iv.setImageResource(toolBox.INTEGER_BLACK_ALL_DRAWABLE[trashNumber]);
-                    }
-
-                    coords = new Point(r.nextInt(toolBox.POINT_BACKGROUND.x)-toolBox.POINT_D_ALL_THRASH.x+1, r.nextInt(toolBox.POINT_BACKGROUND.y-toolBox.POINT_C_ALL_PLAYABLE_TOP-toolBox.POINT_C_ALL_PLAYABLE_BOTTOM)+toolBox.POINT_C_ALL_PLAYABLE_BOTTOM);
-
-                    iv.setLayoutParams(toolBox.positionImage(coords, toolBox.POINT_D_ALL_THRASH));
-                    relativeLayout.addView(iv);
-                    controller.createThrash(iv, trashTypes);
-                }
-                trashQuantity = r.nextInt(toolBox.INT_MAX_ALL_TRASH) + 1;
-            }
+        for (ImageView iv : ivs) {
+            relativeLayout.addView(iv);
         }
-
-        Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + controller.getAllTrash().size(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,6 +1,8 @@
 package itcr.reciclemos;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -31,6 +33,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import itcr.reciclemos.gameutilities.Progress;
+
 public class MainActivity extends AppCompatActivity {
 
     //-- GUI Elements ---------------------
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler animationHandler;
     private Runnable animationRunnable;
+
+    private SharedPreferences progressData;
 
     Utilities toolBox = Utilities.getSingleton();
 
@@ -81,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
         forestBtn.setAlpha(0.3f);
 
         animationHandler = new Handler();
+
+        progressData = getSharedPreferences(Progress.preferencesValue, Context.MODE_PRIVATE);
+
+        boolean hasSeenInformation = progressData.getBoolean(Progress.information, false);
+        boolean hasCompletedHouse = progressData.getBoolean(Progress.house, false);
+        boolean hasCompletedLake = progressData.getBoolean(Progress.lake, false);
     }
 
     @Override

@@ -5,6 +5,10 @@ import android.graphics.Point;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.Random;
+
+import itcr.reciclemos.gameengine.ThrashType;
+
 /**
  * Created by gesab on 4/11/2016.
  */
@@ -25,6 +29,14 @@ public class Utilities {
     public void init(Point screenSize) {
         this.screenSize = screenSize;
     }
+
+    public final int INT_PICK_DATA_ACTIVITY = 1;
+    public final String STR_ENABLE_ALL_LEVEL = "ENABLE_LEVEL";
+    public final String STR_FAIL_ALL_LEVEL = "-1";
+    public final String STR_CODE_HOUSE_LEVEL = "1";
+    public final String STR_CODE_LAKE_LEVEL = "2";
+    public final String STR_CODE_FOREST_LEVEL = "3";
+    public final int INT_MAX_ALL_TRASH = 5;
 
     public final int INT_DELAY_FOREST_ANIMATION = 5000;
 
@@ -61,7 +73,7 @@ public class Utilities {
 
     public final Point POINT_D_ALL_THRASH = new Point(60,60);
 
-    public final int POINT_C_ALL_PLAYABLE_TOP = 120;
+    public final int POINT_C_ALL_PLAYABLE_TOP = 150;
     public final int POINT_C_ALL_PLAYABLE_BOTTOM = 166;
 
     public final int INT_D_ALL_TAB = 200;
@@ -266,5 +278,34 @@ public class Utilities {
         params.height = adjustedSizeWH.y;
 
         return params;
+    }
+
+    public int getRandomImage(ThrashType type) {
+        Random r = new Random();
+        int result = 0;
+        switch (type) {
+            case BLACK:
+                result = INTEGER_BLACK_ALL_DRAWABLE[r.nextInt(INTEGER_BLACK_ALL_DRAWABLE.length)];
+                break;
+            case BLUE:
+                result = INTEGER_BLUE_ALL_DRAWABLE[r.nextInt(INTEGER_BLUE_ALL_DRAWABLE.length)];
+                break;
+            case YELLOW:
+                result = INTEGER_YELLOW_ALL_DRAWABLE[r.nextInt(INTEGER_YELLOW_ALL_DRAWABLE.length)];
+                break;
+            case GREEN:
+                result = INTEGER_GREEN_ALL_DRAWABLE[r.nextInt(INTEGER_GREEN_ALL_DRAWABLE.length)];
+                break;
+            case PURPLE:
+                result = INTEGER_PURPLE_ALL_DRAWABLE[r.nextInt(INTEGER_PURPLE_ALL_DRAWABLE.length)];
+                break;
+            case RED:
+                result = INTEGER_RED_ALL_DRAWABLE[r.nextInt(INTEGER_RED_ALL_DRAWABLE.length)];
+                break;
+            case GRAY:
+                result = INTEGER_GRAY_ALL_DRAWABLE[r.nextInt(INTEGER_GRAY_ALL_DRAWABLE.length)];
+                break;
+        }
+        return result;
     }
 }

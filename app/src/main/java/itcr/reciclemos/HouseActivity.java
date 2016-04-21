@@ -1,5 +1,6 @@
 package itcr.reciclemos;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +15,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Toast;
+import java.util.List;
 import java.util.Random;
-
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
 
@@ -31,6 +33,8 @@ public class HouseActivity extends AppCompatActivity {
     ElementController controller;
     RelativeLayout relativeLayout;
     Utilities toolBox = Utilities.getSingleton();
+    private final int MAX_THRASH = 3;
+    ThrashType[] THRASH_TYPES = { ThrashType.BLUE, ThrashType.GREEN, ThrashType.YELLOW, ThrashType.GRAY, ThrashType.BLACK };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,9 @@ public class HouseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
+                setResult(RESULT_OK, resultIntent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
@@ -70,24 +77,11 @@ public class HouseActivity extends AppCompatActivity {
         yellowTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_YELLOW_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         grayTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_GRAY_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
-/*
-        int MAX_TRASH_HOUSE = 3;
-        Random r = new Random();
-        int trashQuantity = r.nextInt(MAX_TRASH_HOUSE) + 1;
-        Point trashLocations[] = new Point[];
 
-        for(int i = 0; i < 5; i++){
+        List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
 
+        for (ImageView iv : ivs) {
+            relativeLayout.addView(iv);
         }
-*/
-        
-
-        ImageView iv = new ImageView(this);
-        iv.setImageResource(toolBox.INTEGER_GRAY_ALL_DRAWABLE[1]);
-        iv.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_RECYCLE, toolBox.POINT_D_MAIN_RECYCLE));
-        relativeLayout.addView(iv);
-
-        controller.createThrash(iv, ThrashType.GRAY);
-
     }
 }

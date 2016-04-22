@@ -123,7 +123,7 @@ public class HouseActivity extends GameActivity {
             alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(getApplicationContext(), "TEST-TEST", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "TEST-TEST", Toast.LENGTH_SHORT).show();
                     progressHandler.postDelayed(progressRunnable, 1000);
                 }
             });

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,9 @@ public class ForestActivity extends GameActivity {
     private ImageView purpleTrashCanImg;
     private ImageView blackTrashCanImg;
     AlertDialog.Builder alertDialogBuilder;
+    ProgressBar gameProgressBar;
+    private Handler progressHandler;
+    private Runnable progressRunnable;
 
     ElementController controller;
     RelativeLayout relativeLayout;
@@ -53,11 +57,31 @@ public class ForestActivity extends GameActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.forest_layout);
         controller = new ElementController(this);
 
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressHandler = new Handler();
+
+        final int progressRate = gameProgressBar.getMax() / (toolBox.INT_MILLISECONDS_HOUSE_TIMER / 1000);
+        progressHandler.postDelayed(progressRunnable, 1000);
+        progressRunnable = new Runnable() {
+            @Override
+            public void run() {
+                //Update
+                gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
+                if(gameProgressBar.getProgress() >= progressRate){
+                    progressHandler.postDelayed(this, 1000);
+                }
+                else{
+                    showMessage(false, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                }
+            }
+        };
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goBack();
+                showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
             }
         });
 
@@ -87,21 +111,57 @@ public class ForestActivity extends GameActivity {
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_FOREST_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
         List<ImageView> ivs = controller.createAllThrash(MAX_THRASH, THRASH_TYPES);
-
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
         }
     }
 
-    public void showMessage(){
-        alertDialogBuilder.setTitle("Reciclemos - Bosque");
-        alertDialogBuilder.setMessage("Mensaje");
-        alertDialogBuilder.setIcon(R.drawable.btn_main_house);
+    @Override
+    public void onPause() {
+        super.onPause();
+        progressHandler.removeCallbacks(progressRunnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        progressHandler.postDelayed(progressRunnable, 1000);
+    }
+
+    public void showMessage(boolean needPause, int icon, String message) {
+        progressHandler.removeCallbacks(progressRunnable);
+        if (needPause) {
+            alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    //Toast.makeText(getApplicationContext(), "TEST-TEST", Toast.LENGTH_SHORT).show();
+                    progressHandler.postDelayed(progressRunnable, 1000);
+                }
+            });
+        }
         alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setIcon(icon);
+        alertDialogBuilder.setTitle("Reciclemos - Bosque");
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(ForestActivity.this, "OK button", Toast.LENGTH_LONG).show();
+                Intent restartHouse = getIntent();
+                startActivity(restartHouse);
+                //startActivityForResult(restartHouse, toolBox.INT_PICK_DATA_ACTIVITY);
+                finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+                //Intent startHouse = new Intent(this, HouseActivity.class);
+                //startActivityForResult(startHouse, toolBox.INT_PICK_DATA_ACTIVITY);
+                //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Menu principal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                goBack();
             }
         });
         AlertDialog alertDialog = alertDialogBuilder.create();

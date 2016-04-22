@@ -60,8 +60,8 @@ public class Thrash extends Element implements View.OnTouchListener {
     }
 
     @Override
-    public boolean checkCollision(Element element){
-        return true;
+    public CollisionType checkCollision(Element element){
+        return CollisionType.NO_COLLISION;
     }
 
 }

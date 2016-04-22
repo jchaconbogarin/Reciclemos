@@ -15,12 +15,17 @@ public class ThrashCan extends Element {
     }
 
     @Override
-    public boolean checkCollision(Element element) {
-        if (this.thrashType == element.thrashType) {
-            return Rect.intersects(this.updateCollisionRectangle(), element.updateCollisionRectangle());
+    public CollisionType checkCollision(Element element) {
+        if (Rect.intersects(this.updateCollisionRectangle(), element.updateCollisionRectangle())) {
+            if (this.thrashType == element.thrashType) {
+                return CollisionType.CORRECT_THRASH_CAN;
+            } else {
+                return CollisionType.WRONG_THRASH_CAN;
+            }
         } else {
-            return false;
+            return CollisionType.NO_COLLISION;
         }
+
     }
 
 }

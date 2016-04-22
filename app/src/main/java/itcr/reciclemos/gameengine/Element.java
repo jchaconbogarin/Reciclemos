@@ -45,7 +45,7 @@ public abstract class Element {
         imageView.setBackground(null);
     }
 
-    public abstract boolean checkCollision(Element element);
+    public abstract CollisionType checkCollision(Element element);
 
 }
 

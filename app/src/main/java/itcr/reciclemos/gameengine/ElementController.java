@@ -27,6 +27,7 @@ public class ElementController {
     GameActivity activity;
     List<Thrash> allThrash;
     List<ThrashCan> thrashCans;
+    float score = 0;
     private Utilities toolBox = Utilities.getSingleton();
 
     public ElementController(GameActivity activity) {
@@ -53,6 +54,7 @@ public class ElementController {
         allThrash.remove(thrash);
         if (allThrash.isEmpty()) {
             activity.setCompleted();
+            Toast.makeText(activity, "Your score is: " + score, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -69,8 +71,12 @@ public class ElementController {
     public boolean checkCollision(Element element) {
         boolean result = false;
         for (ThrashCan thrashCan : this.thrashCans) {
-            if (thrashCan.checkCollision(element)) {
+            if (thrashCan.checkCollision(element) == CollisionType.CORRECT_THRASH_CAN) {
+                score += 10;
                 result = true;
+                break;
+            } else if (thrashCan.checkCollision(element) == CollisionType.WRONG_THRASH_CAN) {
+                score -= 5;
                 break;
             }
         }

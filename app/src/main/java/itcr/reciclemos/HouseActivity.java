@@ -61,11 +61,15 @@ public class HouseActivity extends GameActivity {
         progressRunnable = new Runnable() {
             @Override
             public void run() {
+                //UPDATE
+                //Si ya termino la partida entonces setCompleted();
+
                 gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
                 if (gameProgressBar.getProgress() >= progressRate) {
                     progressHandler.postDelayed(this, 1000);
                 } else {
-                    showMessage(false, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                    //Se acabo el tiempo
+                    showMessage(false, R.drawable.btn_main_house, "El tiempo se agotó y no se clasificó toda la basura \n Puntaje total: " + "GET_FROM_CONTROLLER");
                 }
             }
         };
@@ -74,7 +78,7 @@ public class HouseActivity extends GameActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                showMessage(true, R.drawable.btn_main_house, "Seleccione una opción:");
             }
         });
 
@@ -149,26 +153,20 @@ public class HouseActivity extends GameActivity {
     }
 
     public void onBackPressed() {
-        showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
-        //goBack();
+        showMessage(true, R.drawable.btn_main_house, "Seleccione una opción:");
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
-                //goBack();
+                showMessage(true, R.drawable.btn_main_house, "Seleccione una opción:");
                 return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
     private void goBack() {
-        Intent resultIntent = new Intent();
-        //Si no gano enviar STR_CODE_ALL_LEVEL
-        //resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);
-        //setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }

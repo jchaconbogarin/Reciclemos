@@ -65,12 +65,15 @@ public class LakeActivity extends GameActivity {
         progressRunnable = new Runnable() {
             @Override
             public void run() {
-                //Update
+                //UPDATE
+                //Si ya termino la partida entonces setCompleted();
+
                 gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
-                if(gameProgressBar.getProgress() >= progressRate){
+                if (gameProgressBar.getProgress() >= progressRate) {
                     progressHandler.postDelayed(this, 1000);
-                } else{
-                    showMessage(false, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                } else {
+                    //Se acabo el tiempo
+                    showMessage(false, R.drawable.btn_main_lake, "El tiempo se agotó y no se clasificó toda la basura \n Puntaje total: " + "GET_FROM_CONTROLLER");
                 }
             }
         };
@@ -79,7 +82,7 @@ public class LakeActivity extends GameActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                showMessage(true, R.drawable.btn_main_lake, "Seleccione una opción:");
             }
         });
 
@@ -156,26 +159,21 @@ public class LakeActivity extends GameActivity {
         alertDialog.show();
     }
 
-    public void onBackPressed(){
-        showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
-        //goBack();
+    public void onBackPressed() {
+        showMessage(true, R.drawable.btn_main_lake, "Seleccione una opción:");
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch(keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                goBack();
+                showMessage(true, R.drawable.btn_main_lake, "Seleccione una opción:");
                 return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    private void goBack(){
-        Intent resultIntent = new Intent();
-        //Si no gano enviar STR_CODE_ALL_LEVEL
-        //resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_FOREST_LEVEL);
-        //setResult(RESULT_OK, resultIntent);
+    private void goBack() {
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }

@@ -120,10 +120,7 @@ public class RecycleActivity extends GameActivity {
     }
 
     private void goBack(){
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_HOUSE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
         Progress.setInformationCompleted(getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE));
-        setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }

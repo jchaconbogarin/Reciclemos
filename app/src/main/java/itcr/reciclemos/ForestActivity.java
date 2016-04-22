@@ -21,7 +21,7 @@ import java.util.List;
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
 
-public class ForestActivity extends AppCompatActivity {
+public class ForestActivity extends GameActivity {
 
     //-- GUI Elements ---------------------
     private ImageView blueTrashCanImg;
@@ -47,7 +47,7 @@ public class ForestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forest);
 
         relativeLayout = (RelativeLayout) findViewById(R.id.forest_layout);
-        controller = new ElementController();
+        controller = new ElementController(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class ForestActivity extends AppCompatActivity {
         purpleTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_FOREST_PURPLE_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_FOREST_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
-        List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
+        List<ImageView> ivs = controller.createAllThrash(MAX_THRASH, THRASH_TYPES);
 
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
@@ -130,4 +130,7 @@ public class ForestActivity extends AppCompatActivity {
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
+
+    @Override
+    public void setCompleted() {}
 }

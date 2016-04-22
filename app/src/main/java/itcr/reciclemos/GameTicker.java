@@ -1,5 +1,7 @@
 package itcr.reciclemos;
 
+import android.app.Activity;
+
 import java.util.Timer;
 import java.util.TimerTask;
 

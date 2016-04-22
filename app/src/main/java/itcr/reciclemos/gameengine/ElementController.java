@@ -5,7 +5,9 @@ package itcr.reciclemos.gameengine;
  */
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Point;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -13,18 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import itcr.reciclemos.GameActivity;
 import itcr.reciclemos.Utilities;
+import itcr.reciclemos.gameutilities.Progress;
 
 /**
  * Created by Boga on 11.04.2016.
  */
 public class ElementController {
 
+    GameActivity activity;
     List<Thrash> allThrash;
     List<ThrashCan> thrashCans;
     private Utilities toolBox = Utilities.getSingleton();
 
-    public ElementController() {
+    public ElementController(GameActivity activity) {
+        this.activity = activity;
         allThrash = new ArrayList<>();
         thrashCans = new ArrayList<>();
     }
@@ -45,6 +51,9 @@ public class ElementController {
 
     public void removeThrash(Thrash thrash) {
         allThrash.remove(thrash);
+        if (allThrash.isEmpty()) {
+            activity.setCompleted();
+        }
     }
 
     public void createThrashCan(ImageView imageView, ThrashType thrashType) {
@@ -68,7 +77,7 @@ public class ElementController {
         return result;
     }
 
-    public List<ImageView> createAllThrash(Activity activity, int maxThrash, ThrashType[] types) {
+    public List<ImageView> createAllThrash(int maxThrash, ThrashType[] types) {
         List<ImageView> ivList = new ArrayList<>();
         Random r = new Random();
         int trashQuantity = r.nextInt(maxThrash) + 1;

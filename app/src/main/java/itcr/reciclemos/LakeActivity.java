@@ -2,6 +2,7 @@ package itcr.reciclemos;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -18,13 +19,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import java.util.List;
-
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
+import itcr.reciclemos.gameutilities.Progress;
 
-public class LakeActivity extends AppCompatActivity {
+public class LakeActivity extends GameActivity {
 
     //-- GUI Elements ---------------------
     private ImageView blueTrashCanImg;
@@ -50,7 +50,7 @@ public class LakeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lake);
 
         relativeLayout = (RelativeLayout) findViewById(R.id.lake_layout);
-        controller = new ElementController();
+        controller = new ElementController(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class LakeActivity extends AppCompatActivity {
         redTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_LAKE_RED_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_LAKE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
-        List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
+        List<ImageView> ivs = controller.createAllThrash(MAX_THRASH, THRASH_TYPES);
 
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
@@ -125,5 +125,10 @@ public class LakeActivity extends AppCompatActivity {
         setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    @Override
+    public void setCompleted() {
+        Progress.setLakeCompleted(getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE));
     }
 }

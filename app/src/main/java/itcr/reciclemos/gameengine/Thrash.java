@@ -54,15 +54,14 @@ public class Thrash extends Element implements View.OnTouchListener {
                     imageView.setX(this.originalX);
                     imageView.setY(this.originalY);
                 }
-
                 break;
         }
         return true;
     }
 
     @Override
-    public boolean checkCollision(Element element){
-        return true;
+    public CollisionType checkCollision(Element element){
+        return CollisionType.NO_COLLISION;
     }
 
 }

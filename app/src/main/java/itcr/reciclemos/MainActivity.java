@@ -17,7 +17,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import itcr.reciclemos.gameutilities.Progress;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,20 +63,24 @@ public class MainActivity extends AppCompatActivity {
         forestBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_FOREST, toolBox.POINT_D_MAIN_FOREST));
         aboutBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_ABOUT, toolBox.POINT_D_MAIN_ABOUT));
 
-        houseBtn.setEnabled(false);
-        lakeBtn.setEnabled(false);
-        forestBtn.setEnabled(false);
-        houseBtn.setAlpha(0.3f);
-        lakeBtn.setAlpha(0.3f);
-        forestBtn.setAlpha(0.3f);
-
         animationHandler = new Handler();
 
-        progressData = getSharedPreferences(Progress.preferencesValue, Context.MODE_PRIVATE);
+        progressData = getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE);
 
-        boolean hasSeenInformation = progressData.getBoolean(Progress.information, false);
-        boolean hasCompletedHouse = progressData.getBoolean(Progress.house, false);
-        boolean hasCompletedLake = progressData.getBoolean(Progress.lake, false);
+        boolean hasSeenInformation = Progress.getInformation(progressData);
+        boolean hasCompletedHouse = Progress.getHouse(progressData);
+        boolean hasCompletedLake = Progress.getLake(progressData);
+
+        if (!hasSeenInformation) {
+            disableButton(houseBtn);
+            disableButton(lakeBtn);
+            disableButton(forestBtn);
+        } else if (!hasCompletedHouse) {
+            disableButton(lakeBtn);
+            disableButton(forestBtn);
+        } else if(!hasCompletedLake) {
+            disableButton(forestBtn);
+        }
     }
 
     @Override
@@ -203,5 +206,10 @@ public class MainActivity extends AppCompatActivity {
         Intent startRecycle = new Intent(this, RecycleActivity.class);
         startActivityForResult(startRecycle, toolBox.INT_PICK_DATA_ACTIVITY);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    private void disableButton(ImageButton button) {
+        button.setEnabled(false);
+        button.setAlpha(0.3f);
     }
 }

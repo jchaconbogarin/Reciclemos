@@ -1,7 +1,9 @@
 package itcr.reciclemos;
 
+import android.widget.ImageView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,15 +16,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import java.util.List;
-
 import android.os.Handler;
-
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
+import itcr.reciclemos.gameutilities.Progress;
 
-public class HouseActivity extends AppCompatActivity {
+public class HouseActivity extends GameActivity {
 
     //-- GUI Elements ---------------------
     private ImageView blueTrashCanImg;
@@ -50,7 +50,7 @@ public class HouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_house);
 
         relativeLayout = (RelativeLayout) findViewById(R.id.house_layout);
-        controller = new ElementController();
+        controller = new ElementController(this);
 
         alertDialogBuilder = new AlertDialog.Builder(this);
         gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -100,7 +100,7 @@ public class HouseActivity extends AppCompatActivity {
         grayTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_GRAY_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
-        List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
+        List<ImageView> ivs = controller.createAllThrash(MAX_THRASH, THRASH_TYPES);
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
         }
@@ -179,5 +179,10 @@ public class HouseActivity extends AppCompatActivity {
         setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    @Override
+    public void setCompleted() {
+        Progress.setHouseCompleted(getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE));
     }
 }

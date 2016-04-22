@@ -44,8 +44,10 @@ public class Utilities {
     public final int INT_MILLISECONDS_FOREST_TIMER = 20000;
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);
+    public final int POINT_C_ALL_PLAYABLE_TOP = 150;
+    public final int POINT_C_ALL_PLAYABLE_BOTTOM = 166;
     public final Point POINT_D_MAIN_RECYCLE = new Point(123, 81);
-    public final Point POINT_C_MAIN_RECYCLE = new Point(50, 20);    //Right-Bottom
+    public final Point POINT_C_MAIN_RECYCLE = new Point(50, 20);    //Left-Bottom
     public final Point POINT_D_MAIN_HOUSE = new Point(294, 214);
     public final Point POINT_C_MAIN_HOUSE = new Point(199, 80);
     public final Point POINT_D_MAIN_LAKE = new Point(276, 82);
@@ -75,9 +77,6 @@ public class Utilities {
     public final Point POINT_C_FOREST_BLACK_TRASHCAN = new Point(915,0);
 
     public final Point POINT_D_ALL_THRASH = new Point(60,60);
-
-    public final int POINT_C_ALL_PLAYABLE_TOP = 150;
-    public final int POINT_C_ALL_PLAYABLE_BOTTOM = 166;
 
     public final int INT_D_ALL_TAB = 200;
 

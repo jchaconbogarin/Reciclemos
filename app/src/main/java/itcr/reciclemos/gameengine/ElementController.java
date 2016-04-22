@@ -69,7 +69,6 @@ public class ElementController {
     }
 
     public List<ImageView> createAllThrash(Activity activity, int maxThrash, ThrashType[] types) {
-
         List<ImageView> ivList = new ArrayList<>();
         Random r = new Random();
         int trashQuantity = r.nextInt(maxThrash) + 1;
@@ -82,7 +81,9 @@ public class ElementController {
                 ImageView iv = new ImageView(activity);
                 iv.setImageResource(toolBox.getRandomImage(thrashType));
 
-                coords = new Point(r.nextInt(toolBox.POINT_BACKGROUND.x) - toolBox.POINT_D_ALL_THRASH.x + 1, r.nextInt(toolBox.POINT_BACKGROUND.y - toolBox.POINT_C_ALL_PLAYABLE_TOP - toolBox.POINT_C_ALL_PLAYABLE_BOTTOM) + toolBox.POINT_C_ALL_PLAYABLE_BOTTOM);
+                coords = new Point(r.nextInt(toolBox.POINT_BACKGROUND.x - toolBox.POINT_D_ALL_THRASH.x)+1, r.nextInt(toolBox.POINT_BACKGROUND.y - toolBox.POINT_C_ALL_PLAYABLE_TOP - toolBox.POINT_C_ALL_PLAYABLE_BOTTOM) + toolBox.POINT_C_ALL_PLAYABLE_BOTTOM);
+
+                Toast.makeText(activity.getApplicationContext(), "X=" + coords.x + "    /   Y=" + coords.y, Toast.LENGTH_SHORT).show();
 
                 iv.setLayoutParams(toolBox.positionImage(coords, toolBox.POINT_D_ALL_THRASH));
                 ivList.add(iv);

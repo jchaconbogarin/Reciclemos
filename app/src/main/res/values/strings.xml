@@ -11,19 +11,19 @@
         "Acerca de Reciclemos\n\n"
     </string>
     <string name="blueTitle_text">Papeles y Cartones</string>
-    <string name="blueDesc_text">Los papepes de libretas, revistas, periódicos y los cartones de cajas, embalajes, etc..., deben depositarse plegados en el contenerdor de color azul para papel y cartón.</string>
+    <string name="blueDesc_text">Los papeles de libretas, revistas, periódicos y los cartones de cajas, embalajes, etc..., deben depositarse plegados en el contenedor de color azul para papel y cartón.</string>
     <string name="greenTitle_text">Vidrios y Cristales</string>
-    <string name="greenDesc_text">Las botellas de vidrio y los tarros de cristal, sin tapones ni tapas, y sin líquido, se depositan dentro del contenerdor verde para vidrio.</string>
+    <string name="greenDesc_text">Las botellas de vidrio y los recipientes de cristal, sin tapones ni tapas, y sin líquido, se depositan dentro del contenedor verde para vidrio.</string>
     <string name="yellowTitle_text">Metales, Plásticos y Tetrabrik</string>
-    <string name="yellowDesc_text">Los embases metálicos (latas de conserva, botes de refresco, etc...), plástico (botellas de agua, de suavizante, de refrescos, etc...) y Tetrabrik (leche, zumos, batidos, etc...) se depositarán juntos en el interior del contenerdor amarillo o de envases.</string>
+    <string name="yellowDesc_text">Los envases metálicos (latas de conserva, botes de refresco, etc...), plástico (botellas de agua, de suavizante, de refrescos, etc...) y Tetrabrik (leche, zumos, batidos, etc...) se depositarán juntos en el interior del contenedor amarillo o de envases.</string>
     <string name="grayTitle_text">Residuos Orgánicos</string>
     <string name="grayDesc_text">Las cáscaras de frutas, sobras de comida, cabello y uñas, pasto y hojas, es lo que usas para hacer la composta y se deposita en el contenedor de color gris.</string>
     <string name="redTitle_text">Residuos Peligrosos</string>
-    <string name="redDesc_text">Los.</string>
+    <string name="redDesc_text">Los desechos hospitalarios, químicos, tóxicos, farmacéuticos e industriales, tales como insecticidas, baterías, aceites, jeringas, restos de pintura y aerosoles se consideran residuos peligrosos y deben ser depositados en el contenedor de color rojo.</string>
     <string name="purpleTitle_text">Residuos Eléctricos y Electrónicos</string>
-    <string name="purpleDesc_text">Los.</string>
+    <string name="purpleDesc_text">Los celulares, cámaras fotográficas, computadoras y accesorios, electrodomésticos, calculadoras, cables y conectores, juegos electrónicos, unidades de almacenamiento externo, entre otros, deben depositarse en el contenedor de color púrpura.</string>
     <string name="blackTitle_text">Residuos Generales</string>
-    <string name="blackDesc_text">Los.</string>
+    <string name="blackDesc_text">Las bolsas con basura, panales, envases de pasta de dientes, pajillas, corchos, trapos, servilletas sucias, papel de fotografía,  cerámica y papel higiénico entre muchos otros son considerados residuos generales y deben depositarse en el contenedor de color negro.</string>
 
     <string name="main_house_contentDescription">Casa</string>
     <string name="main_recycle_contentDescription">Guía de reciclaje</string>

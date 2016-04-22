@@ -76,7 +76,7 @@ public class Utilities {
     public final Point POINT_C_FOREST_PURPLE_TRASHCAN = new Point(763,0);
     public final Point POINT_C_FOREST_BLACK_TRASHCAN = new Point(915,0);
 
-    public final Point POINT_D_ALL_THRASH = new Point(60,60);
+    public final Point POINT_D_ALL_THRASH = new Point(80,80);
 
     public final int INT_D_ALL_TAB = 200;
 

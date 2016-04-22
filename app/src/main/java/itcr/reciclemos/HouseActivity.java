@@ -1,5 +1,6 @@
 package itcr.reciclemos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -24,8 +25,9 @@ import java.util.List;
 import java.util.Random;
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
+import itcr.reciclemos.gameutilities.Progress;
 
-public class HouseActivity extends AppCompatActivity {
+public class HouseActivity extends GameActivity {
 
     //-- GUI Elements ---------------------
     private ImageView blueTrashCanImg;
@@ -49,7 +51,7 @@ public class HouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_house);
 
         relativeLayout = (RelativeLayout) findViewById(R.id.house_layout);
-        controller = new ElementController();
+        controller = new ElementController(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +80,7 @@ public class HouseActivity extends AppCompatActivity {
         grayTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_GRAY_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
-        List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
+        List<ImageView> ivs = controller.createAllThrash(MAX_THRASH, THRASH_TYPES);
 
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
@@ -125,5 +127,10 @@ public class HouseActivity extends AppCompatActivity {
         setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    @Override
+    public void setCompleted() {
+        Progress.setHouseCompleted(getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE));
     }
 }

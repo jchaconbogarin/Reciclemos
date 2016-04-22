@@ -1,5 +1,6 @@
 package itcr.reciclemos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +14,9 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-public class RecycleActivity extends AppCompatActivity {
+import itcr.reciclemos.gameutilities.Progress;
+
+public class RecycleActivity extends GameActivity {
 
     ListView trashList;
     Utilities toolBox = Utilities.getSingleton();
@@ -32,12 +35,7 @@ public class RecycleActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_HOUSE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
-                setResult(RESULT_OK, resultIntent);
-                finish();
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                goBack();
             }
         });
 
@@ -105,26 +103,6 @@ public class RecycleActivity extends AppCompatActivity {
         for (int i = 0; i < trashHost.getTabWidget().getChildCount(); i++){
             trashHost.getTabWidget().getChildAt(i).getLayoutParams().height = toolBox.INT_D_ALL_TAB;
         }
-
-        /*
-        trashHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String tabId) {
-                Toast.makeText(getApplicationContext(), tabId, Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
-
-        /*
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO Auto-generated method stub
-                String Slecteditem = itemname[+position];
-                Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
     }
 
     public void onBackPressed(){
@@ -143,10 +121,15 @@ public class RecycleActivity extends AppCompatActivity {
 
     private void goBack(){
         Intent resultIntent = new Intent();
-        //Si no gano enviar STR_CODE_ALL_LEVEL
-        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_HOUSE_LEVEL);
+        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_HOUSE_LEVEL);  //Si no paso el nivel mandar STR_FAIL_ALL_LEVEL
+        Progress.setInformationCompleted(getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE));
         setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    @Override
+    public void setCompleted() {
+        Progress.setInformationCompleted(getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE));
     }
 }

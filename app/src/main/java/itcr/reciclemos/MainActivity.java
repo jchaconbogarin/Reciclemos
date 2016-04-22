@@ -3,36 +3,19 @@ package itcr.reciclemos;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import itcr.reciclemos.gameutilities.Progress;
 
@@ -80,20 +63,24 @@ public class MainActivity extends AppCompatActivity {
         forestBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_FOREST, toolBox.POINT_D_MAIN_FOREST));
         aboutBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_ABOUT, toolBox.POINT_D_MAIN_ABOUT));
 
-        houseBtn.setEnabled(false);
-        lakeBtn.setEnabled(false);
-        forestBtn.setEnabled(false);
-        houseBtn.setAlpha(0.3f);
-        lakeBtn.setAlpha(0.3f);
-        forestBtn.setAlpha(0.3f);
-
         animationHandler = new Handler();
 
-        progressData = getSharedPreferences(Progress.preferencesValue, Context.MODE_PRIVATE);
+        progressData = getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE);
 
-        boolean hasSeenInformation = progressData.getBoolean(Progress.information, false);
-        boolean hasCompletedHouse = progressData.getBoolean(Progress.house, false);
-        boolean hasCompletedLake = progressData.getBoolean(Progress.lake, false);
+        boolean hasSeenInformation = Progress.getInformation(progressData);
+        boolean hasCompletedHouse = Progress.getHouse(progressData);
+        boolean hasCompletedLake = Progress.getLake(progressData);
+
+        if (!hasSeenInformation) {
+            disableButton(houseBtn);
+            disableButton(lakeBtn);
+            disableButton(forestBtn);
+        } else if (!hasCompletedHouse) {
+            disableButton(lakeBtn);
+            disableButton(forestBtn);
+        } else if(!hasCompletedLake) {
+            disableButton(forestBtn);
+        }
     }
 
     @Override
@@ -219,5 +206,10 @@ public class MainActivity extends AppCompatActivity {
         Intent startRecycle = new Intent(this, RecycleActivity.class);
         startActivityForResult(startRecycle, toolBox.INT_PICK_DATA_ACTIVITY);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    private void disableButton(ImageButton button) {
+        button.setEnabled(false);
+        button.setAlpha(0.3f);
     }
 }

@@ -54,7 +54,6 @@ public class Thrash extends Element implements View.OnTouchListener {
                     imageView.setX(this.originalX);
                     imageView.setY(this.originalY);
                 }
-
                 break;
         }
         return true;

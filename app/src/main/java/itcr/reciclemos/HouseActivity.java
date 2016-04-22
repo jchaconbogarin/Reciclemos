@@ -63,7 +63,6 @@ public class HouseActivity extends GameActivity {
             public void run() {
                 //Update
                 gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
-                Toast.makeText(getApplicationContext(), "Progress: " + gameProgressBar.getProgress(), Toast.LENGTH_SHORT).show();
                 if(gameProgressBar.getProgress() >= progressRate){
                     progressHandler.postDelayed(this, 1000);
                 }

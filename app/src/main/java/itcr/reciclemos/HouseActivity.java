@@ -61,12 +61,10 @@ public class HouseActivity extends GameActivity {
         progressRunnable = new Runnable() {
             @Override
             public void run() {
-                //Update
                 gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
-                if(gameProgressBar.getProgress() >= progressRate){
+                if (gameProgressBar.getProgress() >= progressRate) {
                     progressHandler.postDelayed(this, 1000);
-                }
-                else{
+                } else {
                     showMessage(false, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
                 }
             }
@@ -123,7 +121,6 @@ public class HouseActivity extends GameActivity {
             alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-                    //Toast.makeText(getApplicationContext(), "TEST-TEST", Toast.LENGTH_SHORT).show();
                     progressHandler.postDelayed(progressRunnable, 1000);
                 }
             });
@@ -137,14 +134,8 @@ public class HouseActivity extends GameActivity {
             public void onClick(DialogInterface arg0, int arg1) {
                 Intent restartHouse = getIntent();
                 startActivity(restartHouse);
-                //startActivityForResult(restartHouse, toolBox.INT_PICK_DATA_ACTIVITY);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
-                //Intent startHouse = new Intent(this, HouseActivity.class);
-                //startActivityForResult(startHouse, toolBox.INT_PICK_DATA_ACTIVITY);
-                //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
             }
         });
         alertDialogBuilder.setNegativeButton("Menu principal", new DialogInterface.OnClickListener() {
@@ -158,14 +149,16 @@ public class HouseActivity extends GameActivity {
     }
 
     public void onBackPressed() {
-        goBack();
+        showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+        //goBack();
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                goBack();
+                showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                //goBack();
                 return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -174,8 +167,8 @@ public class HouseActivity extends GameActivity {
     private void goBack() {
         Intent resultIntent = new Intent();
         //Si no gano enviar STR_CODE_ALL_LEVEL
-        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);
-        setResult(RESULT_OK, resultIntent);
+        //resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);
+        //setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }

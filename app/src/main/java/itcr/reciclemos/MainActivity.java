@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton forestBtn;
     private ImageButton aboutBtn;
 
+    private Animation interactiveAnimation;
     private Handler animationHandler;
     private Runnable animationRunnable;
 
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         currentDisplay.getSize(currentScreenSize);
         toolBox.init(currentScreenSize);
 
-
         //-- Link the GUI Elements --
         recycleBtn = (ImageButton) findViewById(R.id.recycle_btn);
         houseBtn = (ImageButton) findViewById(R.id.house_btn);
@@ -63,24 +63,13 @@ public class MainActivity extends AppCompatActivity {
         forestBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_FOREST, toolBox.POINT_D_MAIN_FOREST));
         aboutBtn.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_MAIN_ABOUT, toolBox.POINT_D_MAIN_ABOUT));
 
+        interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
         animationHandler = new Handler();
 
+        //clearSharedPreferences();
         progressData = getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE);
 
-        boolean hasSeenInformation = Progress.getInformation(progressData);
-        boolean hasCompletedHouse = Progress.getHouse(progressData);
-        boolean hasCompletedLake = Progress.getLake(progressData);
-
-        if (!hasSeenInformation) {
-            disableButton(houseBtn);
-            disableButton(lakeBtn);
-            disableButton(forestBtn);
-        } else if (!hasCompletedHouse) {
-            disableButton(lakeBtn);
-            disableButton(forestBtn);
-        } else if(!hasCompletedLake) {
-            disableButton(forestBtn);
-        }
+        guiControl();
     }
 
     @Override
@@ -92,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        final Animation interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
+        guiControl();
+        interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
         animationRunnable = new Runnable() {
             int i = 0;
             @Override
@@ -155,29 +145,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == toolBox.INT_PICK_DATA_ACTIVITY){
-            if (resultCode == RESULT_OK){
-                String strLevelState = data.getStringExtra(toolBox.STR_ENABLE_ALL_LEVEL);
-                //Toast.makeText(getApplicationContext(), "strLevelState: " + strLevelState, Toast.LENGTH_SHORT).show();
-                if (strLevelState.equals(toolBox.STR_CODE_HOUSE_LEVEL)){
-                    houseBtn.setEnabled(true);
-                    houseBtn.setAlpha(1f);
-                }
-                else if (strLevelState.equals(toolBox.STR_CODE_LAKE_LEVEL)){
-                    lakeBtn.setEnabled(true);
-                    lakeBtn.setAlpha(1f);
-                }
-                else if (strLevelState.equals(toolBox.STR_CODE_FOREST_LEVEL)){
-                    forestBtn.setEnabled(true);
-                    forestBtn.setAlpha(1f);
-                }
-            }
-        }
-    }
-
     public void showAbout(View view){
         Intent startAbout = new Intent(this, AboutActivity.class);
         startActivity(startAbout);
@@ -192,24 +159,56 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHouse(View view){
         Intent startHouse = new Intent(this, HouseActivity.class);
-        startActivityForResult(startHouse, toolBox.INT_PICK_DATA_ACTIVITY);
+        startActivity(startHouse);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
     public void showLake(View view){
         Intent startLake = new Intent(this, LakeActivity.class);
-        startActivityForResult(startLake, toolBox.INT_PICK_DATA_ACTIVITY);
+        startActivity(startLake);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
     public void showRecycle(View view){
         Intent startRecycle = new Intent(this, RecycleActivity.class);
-        startActivityForResult(startRecycle, toolBox.INT_PICK_DATA_ACTIVITY);
+        startActivity(startRecycle);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
     private void disableButton(ImageButton button) {
         button.setEnabled(false);
         button.setAlpha(0.3f);
+    }
+
+    private void enableButton(ImageButton button) {
+        button.setEnabled(true);
+        button.setAlpha(1f);
+    }
+
+    public void clearSharedPreferences(){
+        SharedPreferences prefs  = getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.commit();
+    }
+
+    private void guiControl(){
+        boolean hasSeenInformation = Progress.getInformation(progressData);
+        boolean hasCompletedHouse = Progress.getHouse(progressData);
+        boolean hasCompletedLake = Progress.getLake(progressData);
+
+        if (!hasSeenInformation) {
+            disableButton(houseBtn);
+            disableButton(lakeBtn);
+            disableButton(forestBtn);
+        } else if (!hasCompletedHouse) {
+            enableButton(houseBtn);
+            disableButton(lakeBtn);
+            disableButton(forestBtn);
+        } else if(!hasCompletedLake) {
+            enableButton(houseBtn);
+            enableButton(lakeBtn);
+            disableButton(forestBtn);
+        }
     }
 }

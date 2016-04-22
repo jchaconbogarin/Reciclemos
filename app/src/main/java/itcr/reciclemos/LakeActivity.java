@@ -69,8 +69,7 @@ public class LakeActivity extends GameActivity {
                 gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
                 if(gameProgressBar.getProgress() >= progressRate){
                     progressHandler.postDelayed(this, 1000);
-                }
-                else{
+                } else{
                     showMessage(false, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
                 }
             }
@@ -130,7 +129,6 @@ public class LakeActivity extends GameActivity {
             alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-                    //Toast.makeText(getApplicationContext(), "TEST-TEST", Toast.LENGTH_SHORT).show();
                     progressHandler.postDelayed(progressRunnable, 1000);
                 }
             });
@@ -144,14 +142,8 @@ public class LakeActivity extends GameActivity {
             public void onClick(DialogInterface arg0, int arg1) {
                 Intent restartHouse = getIntent();
                 startActivity(restartHouse);
-                //startActivityForResult(restartHouse, toolBox.INT_PICK_DATA_ACTIVITY);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
-                //Intent startHouse = new Intent(this, HouseActivity.class);
-                //startActivityForResult(startHouse, toolBox.INT_PICK_DATA_ACTIVITY);
-                //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
             }
         });
         alertDialogBuilder.setNegativeButton("Menu principal", new DialogInterface.OnClickListener() {
@@ -165,7 +157,8 @@ public class LakeActivity extends GameActivity {
     }
 
     public void onBackPressed(){
-        goBack();
+        showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+        //goBack();
     }
 
     @Override
@@ -181,8 +174,8 @@ public class LakeActivity extends GameActivity {
     private void goBack(){
         Intent resultIntent = new Intent();
         //Si no gano enviar STR_CODE_ALL_LEVEL
-        resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_FOREST_LEVEL);
-        setResult(RESULT_OK, resultIntent);
+        //resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_FOREST_LEVEL);
+        //setResult(RESULT_OK, resultIntent);
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }

@@ -39,7 +39,7 @@ public class Utilities {
     public final String STR_CODE_FOREST_LEVEL = "3";
 
     public final int INT_DELAY_FOREST_ANIMATION = 5000;
-    public final int INT_MILLISECONDS_HOUSE_TIMER = 3000;
+    public final int INT_MILLISECONDS_HOUSE_TIMER = 20000;
     public final int INT_MILLISECONDS_LAKE_TIMER = 20000;
     public final int INT_MILLISECONDS_FOREST_TIMER = 20000;
 
@@ -158,12 +158,12 @@ public class Utilities {
     };
 
     public final String[] STRING_GRAY_ALL_DESC = {
+            "Restos de naranja",
             "Restos de pescado",
             "Restos de pollo",
             "Restos de manzana",
             "Restos de banano",
-            "Restos de huevo",
-            "Restos de manzana"
+            "Restos de huevo"
     };
     public final Integer[] INTEGER_GRAY_ALL_DRAWABLE = {
             R.drawable.trash_gray_1,

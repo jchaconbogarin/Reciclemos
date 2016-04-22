@@ -1,27 +1,24 @@
 package itcr.reciclemos;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
+
 import java.util.List;
-import java.util.Random;
+
+import android.os.Handler;
+
 import itcr.reciclemos.gameengine.ElementController;
 import itcr.reciclemos.gameengine.ThrashType;
 
@@ -33,12 +30,16 @@ public class HouseActivity extends AppCompatActivity {
     private ImageView yellowTrashCanImg;
     private ImageView grayTrashCanImg;
     private ImageView blackTrashCanImg;
+    AlertDialog.Builder alertDialogBuilder;
+    ProgressBar gameProgressBar;
+    private Handler progressHandler;
+    private Runnable progressRunnable;
 
     ElementController controller;
     RelativeLayout relativeLayout;
     Utilities toolBox = Utilities.getSingleton();
     private final int MAX_THRASH = 3;
-    ThrashType[] THRASH_TYPES = { ThrashType.BLUE, ThrashType.GREEN, ThrashType.YELLOW, ThrashType.GRAY, ThrashType.BLACK };
+    ThrashType[] THRASH_TYPES = {ThrashType.BLUE, ThrashType.GREEN, ThrashType.YELLOW, ThrashType.GRAY, ThrashType.BLACK};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +52,32 @@ public class HouseActivity extends AppCompatActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.house_layout);
         controller = new ElementController();
 
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressHandler = new Handler();
+
+        final int progressRate = gameProgressBar.getMax() / (toolBox.INT_MILLISECONDS_HOUSE_TIMER / 1000);
+        progressHandler.postDelayed(progressRunnable, 1000);
+        progressRunnable = new Runnable() {
+            @Override
+            public void run() {
+                //Update
+                gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
+                Toast.makeText(getApplicationContext(), "Progress: " + gameProgressBar.getProgress(), Toast.LENGTH_SHORT).show();
+                if(gameProgressBar.getProgress() >= progressRate){
+                    progressHandler.postDelayed(this, 1000);
+                }
+                else{
+                    showMessage(false, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
+                }
+            }
+        };
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goBack();
+                showMessage(true, R.drawable.btn_main_house, "Puntaje total: \n" + "Tiempo usado: ");
             }
         });
 
@@ -79,38 +101,70 @@ public class HouseActivity extends AppCompatActivity {
         blackTrashCanImg.setLayoutParams(toolBox.positionImage(toolBox.POINT_C_HOUSE_BLACK_TRASHCAN, toolBox.POINT_D_ALL_TRASHCAN));
 
         List<ImageView> ivs = controller.createAllThrash(this, MAX_THRASH, THRASH_TYPES);
-
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
         }
-
-        GameTicker gameTicker = new GameTicker(toolBox.INT_MILLISECONDS_HOUSE_TIMER, 1000, 1000) {
-            ProgressBar gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-            int progressInit = 100;
-            int progressRate = progressInit / (toolBox.INT_MILLISECONDS_HOUSE_TIMER/1000);
-
-            @Override
-            public void onTick(long timeLeft) {
-                progressInit -= progressRate;
-                gameProgressBar.setProgress(progressInit);
-            }
-
-            @Override
-            public void onFinished() {
-                onTick(0);
-                //CHECK GAME STATUS AND SHOW MESSAGE
-            }
-        };
-        gameTicker.start();
     }
 
-    public void onBackPressed(){
+    @Override
+    public void onPause() {
+        super.onPause();
+        progressHandler.removeCallbacks(progressRunnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        progressHandler.postDelayed(progressRunnable, 1000);
+    }
+
+    public void showMessage(boolean needPause, int icon, String message) {
+        progressHandler.removeCallbacks(progressRunnable);
+        if (needPause) {
+            alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    Toast.makeText(getApplicationContext(), "TEST-TEST", Toast.LENGTH_SHORT).show();
+                    progressHandler.postDelayed(progressRunnable, 1000);
+                }
+            });
+        }
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setIcon(icon);
+        alertDialogBuilder.setTitle("Reciclemos - Casa");
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Intent restartHouse = getIntent();
+                startActivity(restartHouse);
+                //startActivityForResult(restartHouse, toolBox.INT_PICK_DATA_ACTIVITY);
+                finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+                //Intent startHouse = new Intent(this, HouseActivity.class);
+                //startActivityForResult(startHouse, toolBox.INT_PICK_DATA_ACTIVITY);
+                //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Menu principal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                goBack();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public void onBackPressed() {
         goBack();
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch(keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 goBack();
                 return true;
@@ -118,7 +172,7 @@ public class HouseActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void goBack(){
+    private void goBack() {
         Intent resultIntent = new Intent();
         //Si no gano enviar STR_CODE_ALL_LEVEL
         resultIntent.putExtra(toolBox.STR_ENABLE_ALL_LEVEL, toolBox.STR_CODE_LAKE_LEVEL);

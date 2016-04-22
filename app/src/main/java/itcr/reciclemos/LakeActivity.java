@@ -1,5 +1,7 @@
 package itcr.reciclemos;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class LakeActivity extends AppCompatActivity {
     private ImageView grayTrashCanImg;
     private ImageView redTrashCanImg;
     private ImageView blackTrashCanImg;
+    AlertDialog.Builder alertDialogBuilder;
 
     ElementController controller;
     RelativeLayout relativeLayout;
@@ -83,25 +87,21 @@ public class LakeActivity extends AppCompatActivity {
         for (ImageView iv : ivs) {
             relativeLayout.addView(iv);
         }
+    }
 
-        GameTicker gameTicker = new GameTicker(toolBox.INT_MILLISECONDS_LAKE_TIMER, 1000, 1000) {
-            ProgressBar gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-            int progressInit = 100;
-            int progressRate = progressInit / (toolBox.INT_MILLISECONDS_LAKE_TIMER/1000);
-
+    public void showMessage(){
+        alertDialogBuilder.setTitle("Reciclemos - Lago");
+        alertDialogBuilder.setMessage("Mensaje");
+        alertDialogBuilder.setIcon(R.drawable.btn_main_house);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
             @Override
-            public void onTick(long timeLeft) {
-                progressInit -= progressRate;
-                gameProgressBar.setProgress(progressInit);
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(LakeActivity.this, "OK button", Toast.LENGTH_LONG).show();
             }
-
-            @Override
-            public void onFinished() {
-                onTick(0);
-                //CHECK GAME STATUS AND SHOW MESSAGE
-            }
-        };
-        gameTicker.start();
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     public void onBackPressed(){

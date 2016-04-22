@@ -3,35 +3,19 @@ package itcr.reciclemos;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import itcr.reciclemos.gameutilities.Progress;
@@ -174,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == toolBox.INT_PICK_DATA_ACTIVITY){
             if (resultCode == RESULT_OK){
                 String strLevelState = data.getStringExtra(toolBox.STR_ENABLE_ALL_LEVEL);
-                //Toast.makeText(getApplicationContext(), "Cantidad en el controller: " + strLevelState, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "strLevelState: " + strLevelState, Toast.LENGTH_SHORT).show();
                 if (strLevelState.equals(toolBox.STR_CODE_HOUSE_LEVEL)){
                     houseBtn.setEnabled(true);
                     houseBtn.setAlpha(1f);

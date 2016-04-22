@@ -65,15 +65,16 @@ public class LakeActivity extends GameActivity {
         progressRunnable = new Runnable() {
             @Override
             public void run() {
-                //UPDATE
-                //Si ya termino la partida entonces setCompleted();
-
-                gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
-                if (gameProgressBar.getProgress() >= progressRate) {
-                    progressHandler.postDelayed(this, 1000);
-                } else {
-                    //Se acabo el tiempo
-                    showMessage(false, R.drawable.btn_main_lake, "El tiempo se agotó y no se clasificó toda la basura \n Puntaje total: " + "GET_FROM_CONTROLLER");
+                if(controller.getAllTrash().size() == 0){
+                    showMessage(false, R.drawable.btn_main_house, "Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
+                }
+                else {
+                    gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
+                    if (gameProgressBar.getProgress() >= progressRate) {
+                        progressHandler.postDelayed(this, 1000);
+                    } else {
+                        showMessage(false, R.drawable.btn_main_house, "El tiempo se agotó y no se clasificó toda la basura\nPuntaje total: " + controller.getScore());
+                    }
                 }
             }
         };

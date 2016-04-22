@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
         animationHandler = new Handler();
 
-        //clearSharedPreferences();
+        clearSharedPreferences();
         progressData = getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE);
 
         guiControl();

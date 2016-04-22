@@ -54,7 +54,7 @@ public class ElementController {
         allThrash.remove(thrash);
         if (allThrash.isEmpty()) {
             activity.setCompleted();
-            Toast.makeText(activity, "Your score is: " + score, Toast.LENGTH_LONG).show();
+            //Toast.makeText(activity, "Your score is: " + score, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -67,6 +67,10 @@ public class ElementController {
     *   Funciones de Soporte de Juego
     *
     * */
+
+    public float getScore() {
+        return score;
+    }
 
     public boolean checkCollision(Element element) {
         boolean result = false;

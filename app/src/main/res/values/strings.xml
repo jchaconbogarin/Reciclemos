@@ -23,7 +23,7 @@
     <string name="purpleTitle_text">Residuos Eléctricos y Electrónicos</string>
     <string name="purpleDesc_text">Los celulares, cámaras fotográficas, computadoras y accesorios, electrodomésticos, calculadoras, cables y conectores, juegos electrónicos, unidades de almacenamiento externo, entre otros, deben depositarse en el contenedor de color púrpura.</string>
     <string name="blackTitle_text">Residuos Generales</string>
-    <string name="blackDesc_text">Las bolsas con basura, panales, envases de pasta de dientes, pajillas, corchos, trapos, servilletas sucias, papel de fotografía,  cerámica y papel higiénico entre muchos otros son considerados residuos generales y deben depositarse en el contenedor de color negro.</string>
+    <string name="blackDesc_text">Las bolsas con basura, pañales, envases de pasta de dientes, pajillas, corchos, trapos, servilletas sucias, papel de fotografía,  cerámica y papel higiénico entre muchos otros son considerados residuos generales y deben depositarse en el contenedor de color negro.</string>
 
     <string name="main_house_contentDescription">Casa</string>
     <string name="main_recycle_contentDescription">Guía de reciclaje</string>

@@ -71,14 +71,14 @@ public class ElementController {
         return score;
     }
 
-    public boolean checkCollision(Element element) {
-        boolean result = false;
+    public CollisionType checkCollision(Element element) {
+        CollisionType result = CollisionType.NO_COLLISION;
         for (ThrashCan thrashCan : this.thrashCans) {
-            if (thrashCan.checkCollision(element) == CollisionType.CORRECT_THRASH_CAN) {
+            result = thrashCan.checkCollision(element);
+            if (result == CollisionType.CORRECT_THRASH_CAN) {
                 score += 10;
-                result = true;
                 break;
-            } else if (thrashCan.checkCollision(element) == CollisionType.WRONG_THRASH_CAN) {
+            } else if (result == CollisionType.WRONG_THRASH_CAN) {
                 score -= 5;
                 break;
             }

@@ -246,6 +246,9 @@ public class Utilities {
             R.drawable.trash_black_1
     };
 
+    public final int SCORE_INCREASE = R.drawable.score_increase;
+    public final int SCORE_DECREASE = R.drawable.score_decrease;
+
     public Point adjustAspect(Point originalDimension){
         double xScale;
         double yScale;

@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
+import itcr.reciclemos.R;
+
 /**
  * Created by Boga on 11.04.2016.
  */
@@ -46,9 +48,9 @@ public class Thrash extends Element implements View.OnTouchListener {
             case MotionEvent.ACTION_UP:
                 isMoving = false;
                 if (this.controller.checkCollision(this)) {
-                    imageView.setImageResource(0);
-                    imageView.setX(-1000);
-                    imageView.setY(-1000);
+                    imageView.setImageResource(R.drawable.mas_puntaje);
+                    //imageView.setX(-1000);
+                    //imageView.setY(-1000);
                     controller.removeThrash(this);
                 } else {
                     imageView.setX(this.originalX);

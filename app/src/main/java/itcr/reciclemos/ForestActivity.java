@@ -67,7 +67,7 @@ public class ForestActivity extends GameActivity {
             @Override
             public void run() {
                 if(controller.getAllTrash().size() == 0){
-                    showMessage(false, R.drawable.btn_main_house, "Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
+                    showMessage(false, R.drawable.btn_main_house, "¡Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
                 }
                 else {
                     gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
@@ -154,7 +154,7 @@ public class ForestActivity extends GameActivity {
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
-        alertDialogBuilder.setNegativeButton("Menu principal", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("Menú principal", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 goBack();

@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
             enableButton(houseBtn);
             enableButton(lakeBtn);
             disableButton(forestBtn);
-        } else{
+        } else {
             enableButton(houseBtn);
             enableButton(lakeBtn);
             enableButton(forestBtn);

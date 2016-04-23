@@ -54,7 +54,6 @@ public class ElementController {
         allThrash.remove(thrash);
         if (allThrash.isEmpty()) {
             activity.setCompleted();
-            //Toast.makeText(activity, "Your score is: " + score, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -91,9 +90,7 @@ public class ElementController {
         List<ImageView> ivList = new ArrayList<>();
         Random r = new Random();
         int trashQuantity = r.nextInt(maxThrash) + 1;
-        //Point trashLocations[] = new Point[];     //Conserva las coordenadas donde se genero para no repetir
 
-        int trashNumber;
         Point coords;
         for (ThrashType thrashType : types) {
             for (int i = 0; i < trashQuantity; i++) {

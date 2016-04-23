@@ -66,7 +66,11 @@ public class LakeActivity extends GameActivity {
             @Override
             public void run() {
                 if(controller.getAllTrash().size() == 0){
-                    showMessage(false, R.drawable.btn_main_house, "¡Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
+                    if(controller.getMisplacedThrash()) {
+                        showMessage(false, R.drawable.btn_main_house, "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: " + controller.getScore());
+                    } else {
+                        showMessage(false, R.drawable.btn_main_house, "¡Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
+                    }
                 }
                 else {
                     gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);

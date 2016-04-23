@@ -53,7 +53,7 @@ public class ElementController {
 
     public void removeThrash(Thrash thrash) {
         allThrash.remove(thrash);
-        if (allThrash.isEmpty()) {
+        if (allThrash.isEmpty() && !misplaced_thrash) {
             activity.setCompleted();
         }
     }

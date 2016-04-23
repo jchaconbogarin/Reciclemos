@@ -1,9 +1,15 @@
 package itcr.reciclemos.gameengine;
 
+import android.media.Image;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import itcr.reciclemos.R;
 
@@ -30,16 +36,16 @@ public class Thrash extends Element implements View.OnTouchListener {
 
     public boolean onTouch(View view, MotionEvent event) {
 
-        switch(event.getAction()) {
+        switch (event.getAction()) {
 
             case MotionEvent.ACTION_DOWN:
                 isMoving = true;
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                if(isMoving) {
-                    x = event.getRawX() - imageView.getWidth()/2;
-                    y = event.getRawY() - imageView.getHeight()*3/2;
+                if (isMoving) {
+                    x = event.getRawX() - imageView.getWidth() / 2;
+                    y = event.getRawY() - imageView.getHeight() * 3 / 2;
                     imageView.setX(x);
                     imageView.setY(y);
                 }
@@ -47,22 +53,52 @@ public class Thrash extends Element implements View.OnTouchListener {
 
             case MotionEvent.ACTION_UP:
                 isMoving = false;
-                if (this.controller.checkCollision(this)) {
-                    imageView.setImageResource(R.drawable.mas_puntaje);
-                    //imageView.setX(-1000);
-                    //imageView.setY(-1000);
-                    controller.removeThrash(this);
+                if (this.controller.checkCollision(this) == CollisionType.CORRECT_THRASH_CAN) {
+                    animate(R.drawable.score_increase);
                 } else {
-                    imageView.setX(this.originalX);
-                    imageView.setY(this.originalY);
+                    animate(R.drawable.score_decrease);
                 }
+                controller.removeThrash(this);
                 break;
         }
         return true;
     }
 
+    public void animate(int resource) {
+        imageView.setImageResource(resource);
+        Animation animation = getAnimation();
+        imageView.startAnimation(animation);
+    }
+
+    private Animation getAnimation() {
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
+        fadeOut.setStartOffset(500);
+        fadeOut.setDuration(1000);
+
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                imageView.setX(-1000);
+                imageView.setY(-1000);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        return fadeOut;
+    }
+
     @Override
-    public CollisionType checkCollision(Element element){
+    public CollisionType checkCollision(Element element) {
         return CollisionType.NO_COLLISION;
     }
 

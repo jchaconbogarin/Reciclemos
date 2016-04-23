@@ -38,10 +38,10 @@ public class Utilities {
     public final String STR_CODE_LAKE_LEVEL = "2";
     public final String STR_CODE_FOREST_LEVEL = "3";
 
-    public final int INT_DELAY_FOREST_ANIMATION = 5000;
-    public final int INT_MILLISECONDS_HOUSE_TIMER = 20000;
-    public final int INT_MILLISECONDS_LAKE_TIMER = 20000;
-    public final int INT_MILLISECONDS_FOREST_TIMER = 20000;
+    public final int INT_DELAY_FOREST_ANIMATION = 4000;
+    public final int INT_MILLISECONDS_HOUSE_TIMER = 30000;
+    public final int INT_MILLISECONDS_LAKE_TIMER = 30000;
+    public final int INT_MILLISECONDS_FOREST_TIMER = 30000;
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);
     public final int POINT_C_ALL_PLAYABLE_TOP = 150;
@@ -54,8 +54,8 @@ public class Utilities {
     public final Point POINT_C_MAIN_LAKE = new Point(501, 60);
     public final Point POINT_D_MAIN_FOREST = new Point(232, 214);
     public final Point POINT_C_MAIN_FOREST = new Point(785, 72);
-    public final Point POINT_D_MAIN_ABOUT = new Point(149, 74);
-    public final Point POINT_C_MAIN_ABOUT = new Point(650, 530);
+    public final Point POINT_D_MAIN_ABOUT = new Point(152, 187);
+    public final Point POINT_C_MAIN_ABOUT = new Point(660, 440);
     public final Point POINT_D_ALL_TRASHCAN = new Point(149,96);
     public final Point POINT_C_HOUSE_BLUE_TRASHCAN = new Point(55,0);
     public final Point POINT_C_HOUSE_GREEN_TRASHCAN = new Point(257,0);
@@ -82,15 +82,15 @@ public class Utilities {
 
     public final String[] STRING_BLUE_ALL_DESC = {
             "Papel periódico",
-            "Papel",
-            "Papel",
+            "Hoja de papel",
+            "Revista",
+            "Historieta",
+            "Libro en mal estado",
             "Caja cartón",
             "Caja cartón",
             "Caja cartón",
             "Caja cartón",
-            "Bolsa de papel",
-            "Caja cartón",
-            "Caja cartón"
+            "Bolsa de papel"
     };
     public final Integer[] INTEGER_BLUE_ALL_DRAWABLE = {
             R.drawable.trash_blue_1,
@@ -108,14 +108,15 @@ public class Utilities {
     public final String[] STRING_GREEN_ALL_DESC = {
             "Botella de vidrio",
             "Botella de vidrio",
+            "Botella de vidrio quebrada",
+            "Botella de vidrio",
+            "Botella de vidrio",
+            "Botella de vidrio",
             "Botella de vidrio",
             "Vaso de vidrio",
             "Copa de vidrio",
-            "Botella de vidrio",
-            "Botella de vidrio",
-            "Botella de vidrio",
-            "Botella de vidrio",
-            "Botella de vidrio"
+            "Copa de cristal",
+            "Pecera"
     };
     public final Integer[] INTEGER_GREEN_ALL_DRAWABLE = {
             R.drawable.trash_green_1,
@@ -127,21 +128,25 @@ public class Utilities {
             R.drawable.trash_green_7,
             R.drawable.trash_green_8,
             R.drawable.trash_green_9,
-            R.drawable.trash_green_10
+            R.drawable.trash_green_10,
+            R.drawable.trash_green_11
     };
 
     public final String[] STRING_YELLOW_ALL_DESC = {
-            "Latas de atún",
+            "Lata de atún",
+            "Lata de refresco",
             "Lata de refresco",
             "Lata de refresco",
             "Recipiente metálico",
-            "Lata de refresco",
-            "Empaque Tetra Pack",
-            "Empaque Tetra Pack",
-            "Empaque Tetra Pack",
-            "Empaque Tetra Pack",
-            "Empaque Tetra Pack",
-            "Botella plástica"
+            "Empaque Tetra Brik",
+            "Empaque Tetra Brik",
+            "Empaque Tetra Brik",
+            "Empaque Tetra Brik",
+            "Empaque Tetra Brik",
+            "Botella plástica",
+            "Botella plástica",
+            "Dispensador de salsa plástico",
+            "Galón plástico"
     };
     public final Integer[] INTEGER_YELLOW_ALL_DRAWABLE = {
             R.drawable.trash_yellow_1,
@@ -154,16 +159,22 @@ public class Utilities {
             R.drawable.trash_yellow_8,
             R.drawable.trash_yellow_9,
             R.drawable.trash_yellow_10,
-            R.drawable.trash_yellow_11
+            R.drawable.trash_yellow_11,
+            R.drawable.trash_yellow_12,
+            R.drawable.trash_yellow_13,
+            R.drawable.trash_yellow_14
     };
 
     public final String[] STRING_GRAY_ALL_DESC = {
-            "Restos de naranja",
-            "Restos de pescado",
-            "Restos de pollo",
-            "Restos de manzana",
-            "Restos de banano",
-            "Restos de huevo"
+            "Resto de naranja",
+            "Resto de pera",
+            "Resto de elote",
+            "Resto de tomate",
+            "Resto de manzana",
+            "Resto de pescado",
+            "Resto de pollo",
+            "Resto de pollo",
+            "Resto de huevo"
     };
     public final Integer[] INTEGER_GRAY_ALL_DRAWABLE = {
             R.drawable.trash_gray_1,
@@ -171,20 +182,23 @@ public class Utilities {
             R.drawable.trash_gray_3,
             R.drawable.trash_gray_4,
             R.drawable.trash_gray_5,
-            R.drawable.trash_gray_6
+            R.drawable.trash_gray_6,
+            R.drawable.trash_gray_7,
+            R.drawable.trash_gray_8,
+            R.drawable.trash_gray_9
     };
 
     public final String[] STRING_RED_ALL_DESC = {
-            "Desechos hospitalarios",
-            "Desechos químicos",
-            "Desechos tóxicos",
-            "Desechos farmacéuticos",
-            "Jeringas (sin aguja)",
-            "Desechos farmacéuticos",
-            "Bombillos",
+            "Desecho hospitalario",
+            "Desecho químico",
+            "Desecho tóxico",
+            "Desecho farmacéutico",
+            "Jeringa (sin aguja)",
+            "Desecho farmacéutico",
+            "Desecho farmacéutico",
+            "Bombillo",
             "Baterías",
-            "Baterías recargables",
-            "Desechos industriales"
+            "Desecho industrial"
     };
     public final Integer[] INTEGER_RED_ALL_DRAWABLE = {
             R.drawable.trash_red_1,
@@ -203,11 +217,13 @@ public class Utilities {
             "Teléfono",
             "Teléfono móvil",
             "Tableta",
-            "Computadores",
-            "Consolas de juegos",
-            "Accesorios de juegos",
-            "Memorias portátiles",
-            "Cámaras fotográficos y de video"
+            "Computadora",
+            "Monitor",
+            "Consola de juegos",
+            "Accesorio de juegos",
+            "Memoria portátil",
+            "Cámara fotográfica y de video",
+            "Radio"
     };
     public final Integer[] INTEGER_PURPLE_ALL_DRAWABLE = {
             R.drawable.trash_purple_1,
@@ -217,33 +233,32 @@ public class Utilities {
             R.drawable.trash_purple_5,
             R.drawable.trash_purple_6,
             R.drawable.trash_purple_7,
-            R.drawable.trash_purple_8
+            R.drawable.trash_purple_8,
+            R.drawable.trash_purple_9,
+            R.drawable.trash_purple_10
     };
 
     public final String[] STRING_BLACK_ALL_DESC = {
-            "Bolsas con basura",
+            "Bolsa con basura",
             "Pañal",
-            "Pasta de dientes",
-            "Pajillas",
-            "Corchos",
-            "Trapos",
-            "Servilletas sucias",
-            "Papel de fotografía",
+            "Pasta dental",
+            "Cepillo dental",
+            "Pajilla",
+            "Corcho",
+            "Papel fotográfico",
             "Cerámica",
             "Papel higiénico"
     };
-
     public final Integer[] INTEGER_BLACK_ALL_DRAWABLE = {
             R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1,
-            R.drawable.trash_black_1
+            R.drawable.trash_black_2,
+            R.drawable.trash_black_3,
+            R.drawable.trash_black_4,
+            R.drawable.trash_black_5,
+            R.drawable.trash_black_6,
+            R.drawable.trash_black_7,
+            R.drawable.trash_black_8,
+            R.drawable.trash_black_9
     };
 
     public final int SCORE_INCREASE = R.drawable.score_increase;

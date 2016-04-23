@@ -46,8 +46,8 @@ public class Progress {
 
     public static void resetAll(SharedPreferences sp) {
         sp.edit().putBoolean(Progress.INFORMATION, false).apply();
-        sp.edit().putBoolean(Progress.LAKE, false).apply();
         sp.edit().putBoolean(Progress.HOUSE, false).apply();
+        sp.edit().putBoolean(Progress.LAKE, false).apply();
     }
 
 }

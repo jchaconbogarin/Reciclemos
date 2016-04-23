@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         interactiveAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobble);
         animationHandler = new Handler();
 
-        clearSharedPreferences();
+        //clearSharedPreferences();
         progressData = getSharedPreferences(Progress.PREFERENCES_VALUE, Context.MODE_PRIVATE);
 
         guiControl();
@@ -203,13 +203,9 @@ public class MainActivity extends AppCompatActivity {
             disableButton(forestBtn);
         } else if (!hasCompletedHouse) {
             enableButton(houseBtn);
-            disableButton(lakeBtn);
-            disableButton(forestBtn);
-        } else if(!hasCompletedLake) {
-            enableButton(houseBtn);
             enableButton(lakeBtn);
             disableButton(forestBtn);
-        } else {
+        } else if(!hasCompletedLake) {
             enableButton(houseBtn);
             enableButton(lakeBtn);
             enableButton(forestBtn);

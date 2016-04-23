@@ -201,17 +201,14 @@ public class MainActivity extends AppCompatActivity {
             disableButton(houseBtn);
             disableButton(lakeBtn);
             disableButton(forestBtn);
-            Toast.makeText(this, "hasSeenInformation", Toast.LENGTH_LONG).show();
         } else if (!hasCompletedHouse) {
             enableButton(houseBtn);
             disableButton(lakeBtn);
             disableButton(forestBtn);
-            Toast.makeText(this, "hasCompletedHouse", Toast.LENGTH_LONG).show();
         } else if (!hasCompletedLake) {
             enableButton(houseBtn);
             enableButton(lakeBtn);
             disableButton(forestBtn);
-            Toast.makeText(this, "hasCompletedLake", Toast.LENGTH_LONG).show();
         } else {
             enableButton(houseBtn);
             enableButton(lakeBtn);

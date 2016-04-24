@@ -53,12 +53,21 @@ public class Thrash extends Element implements View.OnTouchListener {
 
             case MotionEvent.ACTION_UP:
                 isMoving = false;
-                if (this.controller.checkCollision(this) == CollisionType.CORRECT_THRASH_CAN) {
-                    animate(R.drawable.score_increase);
-                } else {
-                    animate(R.drawable.score_decrease);
+                CollisionType collisionCheck = this.controller.checkCollision(this);
+                switch (collisionCheck) {
+                    case CORRECT_THRASH_CAN:
+                        animate(R.drawable.score_increase);
+                        controller.removeThrash(this);
+                        break;
+                    case WRONG_THRASH_CAN:
+                        animate(R.drawable.score_decrease);
+                        controller.removeThrash(this);
+                        break;
+                    default:
+                        imageView.setX(this.originalX);
+                        imageView.setY(this.originalY);
+                        break;
                 }
-                controller.removeThrash(this);
                 break;
         }
         return true;

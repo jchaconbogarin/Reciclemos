@@ -35,14 +35,7 @@ public class ForestActivity extends GameActivity {
     private ImageView redTrashCanImg;
     private ImageView purpleTrashCanImg;
     private ImageView blackTrashCanImg;
-    AlertDialog.Builder alertDialogBuilder;
-    ProgressBar gameProgressBar;
-    private Handler progressHandler;
-    private Runnable progressRunnable;
 
-    ElementController controller;
-    RelativeLayout relativeLayout;
-    Utilities toolBox = Utilities.getSingleton();
     private final int MAX_THRASH = 3;
     ThrashType[] THRASH_TYPES = { ThrashType.BLUE, ThrashType.GREEN, ThrashType.YELLOW, ThrashType.GRAY, ThrashType.RED, ThrashType.PURPLE, ThrashType.BLACK };
 
@@ -56,41 +49,19 @@ public class ForestActivity extends GameActivity {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.forest_layout);
         controller = new ElementController(this);
-
-        alertDialogBuilder = new AlertDialog.Builder(this);
-        gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressHandler = new Handler();
-
-        final int progressRate = gameProgressBar.getMax() / (toolBox.INT_MILLISECONDS_HOUSE_TIMER / 1000);
-        progressHandler.postDelayed(progressRunnable, 1000);
-        progressRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if(controller.getAllTrash().size() == 0){
-                    if(controller.getMisplacedThrash()) {
-                        showMessage(false, R.drawable.btn_main_house, "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: " + controller.getScore());
-                    } else {
-                        showMessage(false, R.drawable.btn_main_house, "¡Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
-                    }
-                }
-                else {
-                    gameProgressBar.setProgress(gameProgressBar.getProgress() - progressRate);
-                    if (gameProgressBar.getProgress() >= progressRate) {
-                        progressHandler.postDelayed(this, 1000);
-                    } else {
-                        showMessage(false, R.drawable.btn_main_house, "El tiempo se agotó y no se clasificó toda la basura\nPuntaje total: " + controller.getScore());
-                    }
-                }
-            }
-        };
+        activityName = "Bosque";
+        icon = R.drawable.btn_main_forest;
+        timer = toolBox.INT_MILLISECONDS_FOREST_TIMER;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMessage(true, R.drawable.btn_main_forest, "Seleccione una opción:");
+                showMessage(true, icon, "Seleccione una opción:");
             }
         });
+
+        createDialogAndTimer();
 
         //-- Link the GUI Elements ------------
         blueTrashCanImg = (ImageView) findViewById(R.id.blue_trashCan_img);
@@ -135,56 +106,18 @@ public class ForestActivity extends GameActivity {
         progressHandler.postDelayed(progressRunnable, 1000);
     }
 
-    public void showMessage(boolean needPause, int icon, String message) {
-        progressHandler.removeCallbacks(progressRunnable);
-        if (needPause) {
-            alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface arg0, int arg1) {
-                    progressHandler.postDelayed(progressRunnable, 1000);
-                }
-            });
-        }
-        alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setIcon(icon);
-        alertDialogBuilder.setTitle("Reciclemos - Casa");
-        alertDialogBuilder.setMessage(message);
-        alertDialogBuilder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Intent restartHouse = getIntent();
-                startActivity(restartHouse);
-                finish();
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-            }
-        });
-        alertDialogBuilder.setNegativeButton("Menú principal", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                goBack();
-            }
-        });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
     public void onBackPressed() {
-        showMessage(true, R.drawable.btn_main_forest, "Seleccione una opción:");
+        showMessage(true, icon, "Seleccione una opción:");
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                showMessage(true, R.drawable.btn_main_forest, "Seleccione una opción:");
+                showMessage(true, icon, "Seleccione una opción:");
                 return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    private void goBack() {
-        finish();
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
     @Override

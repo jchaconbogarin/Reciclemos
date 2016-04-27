@@ -20,10 +20,12 @@ public abstract class GameActivity extends AppCompatActivity {
     protected Handler progressHandler;
     protected Runnable progressRunnable;
     protected String activityName;
+    protected ElementController controller;
+    protected RelativeLayout relativeLayout;
+    protected Utilities toolBox = Utilities.getSingleton();
 
-    ElementController controller;
-    RelativeLayout relativeLayout;
-    Utilities toolBox = Utilities.getSingleton();
+    protected int timer;
+    protected int icon;
 
     public abstract void setCompleted();
 
@@ -32,16 +34,16 @@ public abstract class GameActivity extends AppCompatActivity {
         gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressHandler = new Handler();
 
-        final int progressRate = gameProgressBar.getMax() / (toolBox.INT_MILLISECONDS_HOUSE_TIMER / 1000);
+        final int progressRate = gameProgressBar.getMax() / (timer / 1000);
         progressHandler.postDelayed(progressRunnable, 1000);
         progressRunnable = new Runnable() {
             @Override
             public void run() {
                 if(controller.getAllTrash().size() == 0){
                     if(controller.getMisplacedThrash()) {
-                        showMessage(false, R.drawable.btn_main_house, "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: " + controller.getScore());
+                        showMessage(false, icon, "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: " + controller.getScore());
                     } else {
-                        showMessage(false, R.drawable.btn_main_house, "¡Felicidades! Se ha clasificado toda la basura\nPuntaje total: " + controller.getScore());
+                        showMessage(false, icon, "¡Felicidades! Se ha clasificado toda la basura.\nPuntaje total: " + controller.getScore());
                     }
                 }
                 else {
@@ -49,7 +51,7 @@ public abstract class GameActivity extends AppCompatActivity {
                     if (gameProgressBar.getProgress() >= progressRate) {
                         progressHandler.postDelayed(this, 1000);
                     } else {
-                        showMessage(false, R.drawable.btn_main_house, "El tiempo se agotó y no se clasificó toda la basura\nPuntaje total: " + controller.getScore());
+                        showMessage(false, icon, "El tiempo se agotó y no se clasificó toda la basura.\nPuntaje total: " + controller.getScore());
                     }
                 }
             }
@@ -73,8 +75,8 @@ public abstract class GameActivity extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                Intent restartHouse = getIntent();
-                startActivity(restartHouse);
+                Intent restart = getIntent();
+                startActivity(restart);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }

@@ -30,14 +30,6 @@ public class Utilities {
         this.screenSize = screenSize;
     }
 
-    public final int INT_PICK_DATA_ACTIVITY = 1;
-    public final String STR_ENABLE_ALL_LEVEL = "ENABLE_LEVEL";
-    public final String STR_CODE_ALL_LEVEL = "-1";
-    public final String STR_CODE_NONE_LEVEL = "0";
-    public final String STR_CODE_HOUSE_LEVEL = "1";
-    public final String STR_CODE_LAKE_LEVEL = "2";
-    public final String STR_CODE_FOREST_LEVEL = "3";
-
     public final int INT_DELAY_FOREST_ANIMATION = 4000;
     public final int INT_MILLISECONDS_HOUSE_TIMER = 30000;
     public final int INT_MILLISECONDS_LAKE_TIMER = 30000;
@@ -79,6 +71,16 @@ public class Utilities {
     public final Point POINT_D_ALL_THRASH = new Point(80,80);
 
     public final int INT_D_ALL_TAB = 200;
+
+    public final String STRING_MSG_DIALOG_MISSES = "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: ";
+    public final String STRING_MSG_DIALOG_FLAWLESS = "¡Felicidades! Se ha clasificado toda la basura.\nPuntaje total: ";
+    public final String STRING_MSG_DIALOG_NOTIME = "El tiempo se agotó y no se clasificó toda la basura.\nPuntaje total: ";
+    public final String STRING_MSG_DIALOG_BACK = "Volver";
+    public final String STRING_MSG_DIALOG_RESTART = "Reiniciar";
+    public final String STRING_MSG_DIALOG_MAINMENU = "Menú principal";
+    public final String STRING_MSG_DIALOG_OPTION = "Seleccione una opción:";
+
+    public final String STRING_PREFIX_ACTIVITY_TITLE = "Reciclemos - ";
 
     public final String[] STRING_BLUE_ALL_DESC = {
             "Papel periódico",

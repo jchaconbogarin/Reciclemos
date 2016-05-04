@@ -3,10 +3,12 @@ package itcr.reciclemos;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import itcr.reciclemos.gameengine.ElementController;
 
@@ -16,6 +18,7 @@ import itcr.reciclemos.gameengine.ElementController;
 public abstract class GameActivity extends AppCompatActivity {
 
     protected AlertDialog.Builder alertDialogBuilder;
+    protected TextView scoreTextView;
     protected ProgressBar gameProgressBar;
     protected Handler progressHandler;
     protected Runnable progressRunnable;
@@ -31,6 +34,7 @@ public abstract class GameActivity extends AppCompatActivity {
 
     protected void createDialogAndTimer() {
         alertDialogBuilder = new AlertDialog.Builder(this);
+        scoreTextView = (TextView) findViewById(R.id.score_textView);
         gameProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressHandler = new Handler();
 
@@ -39,11 +43,12 @@ public abstract class GameActivity extends AppCompatActivity {
         progressRunnable = new Runnable() {
             @Override
             public void run() {
+                scoreTextView.setText("Puntaje total: " + controller.getScore());
                 if(controller.getAllTrash().size() == 0){
                     if(controller.getMisplacedThrash()) {
-                        showMessage(false, icon, "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: " + controller.getScore());
+                        showMessage(false, icon, toolBox.STRING_MSG_DIALOG_MISSES + controller.getScore());
                     } else {
-                        showMessage(false, icon, "¡Felicidades! Se ha clasificado toda la basura.\nPuntaje total: " + controller.getScore());
+                        showMessage(false, icon, toolBox.STRING_MSG_DIALOG_FLAWLESS + controller.getScore());
                     }
                 }
                 else {
@@ -51,7 +56,7 @@ public abstract class GameActivity extends AppCompatActivity {
                     if (gameProgressBar.getProgress() >= progressRate) {
                         progressHandler.postDelayed(this, 1000);
                     } else {
-                        showMessage(false, icon, "El tiempo se agotó y no se clasificó toda la basura.\nPuntaje total: " + controller.getScore());
+                        showMessage(false, icon, toolBox.STRING_MSG_DIALOG_NOTIME + controller.getScore());
                     }
                 }
             }
@@ -61,7 +66,7 @@ public abstract class GameActivity extends AppCompatActivity {
     protected void showMessage(boolean needPause, int icon, String message) {
         progressHandler.removeCallbacks(progressRunnable);
         if (needPause) {
-            alertDialogBuilder.setNeutralButton("Volver", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNeutralButton(toolBox.STRING_MSG_DIALOG_BACK, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
                     progressHandler.postDelayed(progressRunnable, 1000);
@@ -70,9 +75,9 @@ public abstract class GameActivity extends AppCompatActivity {
         }
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setIcon(icon);
-        alertDialogBuilder.setTitle("Reciclemos - " + activityName);
+        alertDialogBuilder.setTitle(toolBox.STRING_PREFIX_ACTIVITY_TITLE + activityName);
         alertDialogBuilder.setMessage(message);
-        alertDialogBuilder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(toolBox.STRING_MSG_DIALOG_RESTART, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 Intent restart = getIntent();
@@ -81,7 +86,7 @@ public abstract class GameActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
-        alertDialogBuilder.setNegativeButton("Menú principal", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton(toolBox.STRING_MSG_DIALOG_MAINMENU, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 goBack();

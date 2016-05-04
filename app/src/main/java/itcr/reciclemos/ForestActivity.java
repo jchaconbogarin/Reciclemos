@@ -57,7 +57,7 @@ public class ForestActivity extends GameActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMessage(true, icon, "Seleccione una opción:");
+                showMessage(true, icon, toolBox.STRING_MSG_DIALOG_OPTION);
             }
         });
 
@@ -107,14 +107,14 @@ public class ForestActivity extends GameActivity {
     }
 
     public void onBackPressed() {
-        showMessage(true, icon, "Seleccione una opción:");
+        showMessage(true, icon, toolBox.STRING_MSG_DIALOG_OPTION);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                showMessage(true, icon, "Seleccione una opción:");
+                showMessage(true, icon, toolBox.STRING_MSG_DIALOG_OPTION);
                 return true;
         }
         return super.onKeyDown(keyCode, event);

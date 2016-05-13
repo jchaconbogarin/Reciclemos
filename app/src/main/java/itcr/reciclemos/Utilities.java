@@ -267,20 +267,8 @@ public class Utilities {
     public final int SCORE_DECREASE = R.drawable.score_decrease;
 
     public Point adjustAspect(Point originalDimension){
-        double xScale;
-        double yScale;
-        if(POINT_BACKGROUND.x < screenSize.x){
-            xScale = (double)screenSize.x / POINT_BACKGROUND.x;
-        }
-        else{
-            xScale = (double)POINT_BACKGROUND.x / screenSize.x;
-        }
-        if(POINT_BACKGROUND.y < screenSize.y){
-            yScale = (double)screenSize.y / POINT_BACKGROUND.y;
-        }
-        else{
-            yScale = (double)POINT_BACKGROUND.y / screenSize.y;
-        }
+        double xScale = (double)screenSize.x / POINT_BACKGROUND.x;
+        double yScale = (double)screenSize.y / POINT_BACKGROUND.y;
         int intNewX = (int) (xScale * originalDimension.x);
         int intNewY = (int) (yScale * originalDimension.y);
         return new Point(intNewX, intNewY);

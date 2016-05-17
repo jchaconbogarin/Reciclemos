@@ -53,6 +53,7 @@ public class LakeActivity extends GameActivity {
         activityName = "Lago";
         icon = R.drawable.btn_main_lake;
         timer = toolBox.INT_MILLISECONDS_LAKE_TIMER;
+        minScore = 90;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

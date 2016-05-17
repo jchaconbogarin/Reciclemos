@@ -52,6 +52,7 @@ public class ForestActivity extends GameActivity {
         activityName = "Bosque";
         icon = R.drawable.btn_main_forest;
         timer = toolBox.INT_MILLISECONDS_FOREST_TIMER;
+        minScore = 100;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

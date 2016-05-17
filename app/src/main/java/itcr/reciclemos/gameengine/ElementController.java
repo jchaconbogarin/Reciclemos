@@ -28,7 +28,6 @@ public class ElementController {
     List<Thrash> allThrash;
     List<ThrashCan> thrashCans;
     float score = 0;
-    private boolean misplaced_thrash = false;
     private Utilities toolBox = Utilities.getSingleton();
 
     public ElementController(GameActivity activity) {
@@ -53,7 +52,7 @@ public class ElementController {
 
     public void removeThrash(Thrash thrash) {
         allThrash.remove(thrash);
-        if (allThrash.isEmpty() && !misplaced_thrash) {
+        if (allThrash.isEmpty() && activity.getMinScore() < this.score) {
             activity.setCompleted();
         }
     }
@@ -80,7 +79,6 @@ public class ElementController {
                 score += 10;
                 break;
             } else if (result == CollisionType.WRONG_THRASH_CAN) {
-                misplaced_thrash = true;
                 score -= 5;
                 break;
             }
@@ -107,10 +105,5 @@ public class ElementController {
         }
         return ivList;
     }
-
-    public boolean getMisplacedThrash() {
-        return misplaced_thrash;
-    }
-
 }
 

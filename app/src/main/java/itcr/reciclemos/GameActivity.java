@@ -25,6 +25,7 @@ public abstract class GameActivity extends AppCompatActivity {
     protected String activityName;
     protected ElementController controller;
     protected RelativeLayout relativeLayout;
+    protected float minScore;
     protected Utilities toolBox = Utilities.getSingleton();
 
     protected int timer;
@@ -45,8 +46,8 @@ public abstract class GameActivity extends AppCompatActivity {
             public void run() {
                 scoreTextView.setText("Puntaje total: " + controller.getScore());
                 if(controller.getAllTrash().size() == 0){
-                    if(controller.getMisplacedThrash()) {
-                        showMessage(false, icon, toolBox.STRING_MSG_DIALOG_MISSES + controller.getScore());
+                    if(controller.getScore() < minScore) {
+                        showMessage(false, icon, toolBox.STRING_MSG_DIALOG_MISSES + minScore + ". Inténtelo nuevamente.\nPuntaje total: " + controller.getScore());
                     } else {
                         showMessage(false, icon, toolBox.STRING_MSG_DIALOG_FLAWLESS + controller.getScore());
                     }
@@ -99,6 +100,10 @@ public abstract class GameActivity extends AppCompatActivity {
     private void goBack() {
         finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+
+    public float getMinScore() {
+        return this.minScore;
     }
 
 }

@@ -47,6 +47,7 @@ public class HouseActivity extends GameActivity {
         activityName = "Casa";
         icon = R.drawable.btn_main_house;
         timer = toolBox.INT_MILLISECONDS_HOUSE_TIMER;
+        minScore = 80;
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

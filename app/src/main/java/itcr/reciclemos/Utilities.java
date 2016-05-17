@@ -31,9 +31,9 @@ public class Utilities {
     }
 
     public final int INT_DELAY_FOREST_ANIMATION = 4000;
-    public final int INT_MILLISECONDS_HOUSE_TIMER = 30000;
-    public final int INT_MILLISECONDS_LAKE_TIMER = 30000;
-    public final int INT_MILLISECONDS_FOREST_TIMER = 30000;
+    public final int INT_MILLISECONDS_HOUSE_TIMER = 40000;
+    public final int INT_MILLISECONDS_LAKE_TIMER = 45000;
+    public final int INT_MILLISECONDS_FOREST_TIMER = 50000;
 
     public final Point POINT_BACKGROUND = new Point(1067, 711);
     public final int POINT_C_ALL_PLAYABLE_TOP = 150;
@@ -72,7 +72,7 @@ public class Utilities {
 
     public final int INT_D_ALL_TAB = 200;
 
-    public final String STRING_MSG_DIALOG_MISSES = "Se ha clasificado toda la basura, pero no correctamente. Inténtelo nuevamente.\nPuntaje total: ";
+    public final String STRING_MSG_DIALOG_MISSES = "Se ha clasificado toda la basura, pero no correctamente. Debe obtener un puntaje mínimo de ";
     public final String STRING_MSG_DIALOG_FLAWLESS = "¡Felicidades! Se ha clasificado toda la basura.\nPuntaje total: ";
     public final String STRING_MSG_DIALOG_NOTIME = "El tiempo se agotó y no se clasificó toda la basura.\nPuntaje total: ";
     public final String STRING_MSG_DIALOG_BACK = "Volver";
